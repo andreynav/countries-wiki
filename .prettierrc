@@ -1,0 +1,21 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "parser": "typescript",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "pluginSearchDirs": [
+    "."
+  ],
+  "importOrder": [
+    "./publicPath",
+    "^@/(.*)$",
+    "^[../]",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
