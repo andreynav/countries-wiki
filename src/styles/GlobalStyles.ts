@@ -2,20 +2,47 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
   :root {
+    /* Typography */
+    --family: 'Nunito Sans', sans-serif;
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fw-light: 300;
+    --fw-normal: 600;
+    --fw-bold: 800;
+
+    /* Other */
+    --radii: 0.5rem;
+    
     --bg-color: #282c34;
-    --cell-size: 100px;
-    --col-size: 300px;
-    --num-rows-cols: 3;
-    --cell-border-size: 2px;
     --cell-font-size: 70px;
+  }
+
+  body[data-theme='dark'] {
+    --colors-text: hsl(0, 0%, 100%);
+    --colors-bg: hsl(207, 26%, 17%);
+    --colors-ui-base: hsl(209, 23%, 22%);
+
+    --shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
+  }
+  body[data-theme='light'] {
+    --colors-text: hsl(200, 15%, 8%);
+    --colors-bg: hsl(0, 0%, 98%);
+    --colors-ui-base: hsl(0, 0%, 100%);
+
+    --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
   
   html, body {
+    font-family: var(--family);
+    color: var(--colors-text);
+    font-weight: var(--fw-light);
+    background-color: var(--colors-bg);
+    
     margin: 0;
     padding: 0;
     line-height: 1.15;
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
+    //font-family: 'Montserrat', sans-serif;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
