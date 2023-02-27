@@ -20,7 +20,7 @@ export const Header = () => {
           <Title>Where is the world?</Title>
           <ModeSwitcher onClick={onSwitchTheme}>
             {theme === 'light' ? <IoMoonOutline size={'14px'} /> : <IoMoon size={'14px'} />}
-            <span style={{ marginLeft: '0.75rem' }}>{theme} theme</span>
+            <div style={{ marginLeft: '0.75rem' }}>{theme} theme</div>
           </ModeSwitcher>
         </Wrapper>
       </Container>
@@ -29,9 +29,9 @@ export const Header = () => {
 }
 
 const HeaderElement = styled.header`
+  display: grid;
   box-shadow: var(--shadow);
   background-color: var(--colors-ui-base);
-  border: 1px solid red;
 `
 
 const Container = styled.div`
@@ -42,7 +42,8 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
@@ -51,6 +52,7 @@ const Wrapper = styled.div`
 const Title = styled.div.attrs({
   to: '/'
 })`
+  display: grid;
   color: var(--colors-text);
   font-size: var(--fs-sm);
   text-decoration: none;
@@ -58,6 +60,8 @@ const Title = styled.div.attrs({
 `
 
 const ModeSwitcher = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
   color: var(--colors-text);
   font-size: var(--fs-sm);
   cursor: pointer;
