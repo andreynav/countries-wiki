@@ -28,14 +28,14 @@ export const App = () => {
 const AppWrapper = styled.div`
   display: grid;
   //height: 100vh;
-  width: auto;
-  background-color: var(--bg-color);
-  color: white;
-  text-align: center;
+  //width: auto;
+  //background-color: var(--bg-color);
+  //color: white;
+  //text-align: center;
 
-  & .App-link {
-    color: #61dafb;
-  }
+  //& .App-link {
+  //  color: #61dafb;
+  //}
 
   @media (max-width: 768px) {
     grid-template-columns: 1rem minmax(20rem, 1fr) 1rem;
