@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { IoMoon, IoMoonOutline } from 'react-icons/io5'
 import styled from 'styled-components'
 
+import { Container } from '../Container/Container'
+
 export const Header = () => {
   const [theme, setTheme] = useState('light')
 
@@ -32,13 +34,6 @@ const HeaderElement = styled.header`
   display: grid;
   box-shadow: var(--shadow);
   background-color: var(--colors-ui-base);
-`
-
-const Container = styled.div`
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 2rem;
 `
 
 const Wrapper = styled.div`
