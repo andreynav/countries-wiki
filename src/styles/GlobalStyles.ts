@@ -12,15 +12,13 @@ export const GlobalStyles = createGlobalStyle`
 
     /* Other */
     --radii: 0.5rem;
-    
-    --bg-color: #282c34;
-    --cell-font-size: 70px;
   }
 
   body[data-theme='dark'] {
     --colors-text: hsl(0, 0%, 100%);
     --colors-bg: hsl(207, 26%, 17%);
     --colors-ui-base: hsl(209, 23%, 22%);
+    --colors-placeholder: hsl(0,0%,50%);
 
     --shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
   }
@@ -28,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
     --colors-text: hsl(200, 15%, 8%);
     --colors-bg: hsl(0, 0%, 98%);
     --colors-ui-base: hsl(0, 0%, 100%);
+    --colors-placeholder: hsl(0, 0%, 41%);
 
     --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
