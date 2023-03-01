@@ -18,12 +18,12 @@ export const App = () => {
 const AppWrapper = styled.div`
   display: grid;
 
-  @media (max-width: 768px) {
-    //grid-template-columns: 1rem minmax(20rem, 1fr) 1rem;
-  }
+  //@media (max-width: 768px) {
+  //grid-template-columns: 1rem minmax(20rem, 1fr) 1rem;
+  //}
 
-  @media (max-width: 480px) {
-    //grid-template-rows: 3rem auto 1fr;
-    //grid-template-columns: 1rem minmax(10rem, 1fr) 1rem;
-  }
+  //@media (max-width: 480px) {
+  //grid-template-rows: 3rem auto 1fr;
+  //grid-template-columns: 1rem minmax(10rem, 1fr) 1rem;
+  //}
 `

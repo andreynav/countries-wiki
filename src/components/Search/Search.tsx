@@ -21,12 +21,12 @@ const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
   border-radius: var(--radii);
   box-shadow: var(--shadow);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   padding: 1rem 2rem;
   cursor: pointer;
 
   @media (min-width: 767px) {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     width: 280px;
   }
 `
@@ -43,6 +43,6 @@ const Input = styled.input.attrs({
   outline: none;
 
   &::placeholder {
-    color: var(--colors-placeholder);
+    color: var(--colors-text);
   }
 `
