@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body[data-theme='dark'] {
-    --colors-text: hsl(0, 0%, 100%);
+    --colors-text: hsl(0, 0%, 100%); //#ffffff
     --colors-bg: hsl(207, 26%, 17%);
     --colors-ui-base: hsl(209, 23%, 22%);
     --colors-placeholder: hsl(0,0%,50%);
@@ -23,7 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     --shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
   }
   body[data-theme='light'] {
-    --colors-text: hsl(200, 15%, 8%);
+    --colors-text: hsl(200, 15%, 8%); //#111517
     --colors-bg: hsl(0, 0%, 98%);
     --colors-ui-base: hsl(0, 0%, 100%);
     --colors-placeholder: hsl(0, 0%, 41%);

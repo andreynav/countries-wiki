@@ -16,6 +16,6 @@ const MainWrapper = styled.div`
   padding: 2rem;
 
   @media (min-width: 767px) {
-    padding: 4rem 0;
+    //padding: 4rem 0;
   }
 `
