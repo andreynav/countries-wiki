@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import styled from 'styled-components'
 
 import { CustomSelect } from '../CustomSelect/CustomSelect'
@@ -12,9 +12,9 @@ const options = [
   { value: 'Oceania', label: 'Oceania' }
 ]
 
-export const Controls = () => {
-  const [search, setSearch] = useState('')
-  const [region, setRegion] = useState('')
+export const Controls = ({ search, setSearch, region, setRegion }: any) => {
+  // const [search, setSearch] = useState('')
+  // const [region, setRegion] = useState('')
 
   return (
     <ControlsContainer>

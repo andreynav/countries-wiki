@@ -13,7 +13,7 @@ export const Main = ({ children }: PropsWithChildren) => {
 
 const MainWrapper = styled.div`
   display: grid;
-  padding: 2rem;
+  padding: 2rem 0;
 
   @media (min-width: 767px) {
     //padding: 4rem 0;
