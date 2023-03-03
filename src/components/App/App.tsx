@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Controls } from '../Controls/Controls'
 import { Header } from '../Header/Header'
 import { Main } from '../Main/Main'
+import { Card, CountryT } from './Card/Card'
 
 const countryApi = axios.create({
   baseURL: 'https://restcountries.com/v3.1/',
@@ -14,14 +15,6 @@ const countryApi = axios.create({
 type RegionT = {
   value: string
   label: string
-}
-
-type CountryT = {
-  name: { common: string }
-  flags: { png: string }
-  population: number
-  capital: Array<string>
-  region: string
 }
 
 export const App = () => {
@@ -45,21 +38,11 @@ export const App = () => {
       <Header />
       <Main>
         <Controls search={search} setSearch={setSearch} region={region} setRegion={setRegion} />
-        <div>
+        <CardList>
           {dataApi.map((country: CountryT) => {
-            return (
-              <div key={country.name.common}>
-                <img src={country?.flags?.png} alt={'flag'} style={{ height: '100px' }}></img>
-                <div>{`Name: ${country?.name.common}`}</div>
-                <div>{`Population: ${country?.population}`}</div>
-                <div>
-                  {country.capital ? `Capital: ${country?.capital[0]}` : `Capital: no data`}
-                </div>
-                <div>{`Region: ${country?.region}`}</div>
-              </div>
-            )
+            return <Card key={country.name.common} country={country} />
           })}
-        </div>
+        </CardList>
       </Main>
     </AppWrapper>
   )
@@ -67,13 +50,22 @@ export const App = () => {
 
 const AppWrapper = styled.div`
   display: grid;
+`
+const CardList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  justify-content: space-between;
 
-  //@media (max-width: 768px) {
-  //grid-template-columns: 1rem minmax(20rem, 1fr) 1rem;
-  //}
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    justify-content: space-between;
+  }
 
-  //@media (max-width: 480px) {
-  //grid-template-rows: 3rem auto 1fr;
-  //grid-template-columns: 1rem minmax(10rem, 1fr) 1rem;
-  //}
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    justify-content: space-between;
+  }
 `

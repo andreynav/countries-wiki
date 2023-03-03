@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import styled from 'styled-components'
 
 import { CustomSelect } from '../CustomSelect/CustomSelect'
@@ -13,9 +12,6 @@ const options = [
 ]
 
 export const Controls = ({ search, setSearch, region, setRegion }: any) => {
-  // const [search, setSearch] = useState('')
-  // const [region, setRegion] = useState('')
-
   return (
     <ControlsContainer>
       <Search search={search} setSearch={setSearch} />
@@ -25,7 +21,6 @@ export const Controls = ({ search, setSearch, region, setRegion }: any) => {
         isClearable
         isSearchable={false}
         value={region}
-        // @ts-ignore
         onChange={setRegion}
       />
     </ControlsContainer>
@@ -34,13 +29,19 @@ export const Controls = ({ search, setSearch, region, setRegion }: any) => {
 
 const ControlsContainer = styled.div`
   display: grid;
-  grid-template-columns: auto;
-  //padding: 2rem;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 
-  @media (min-width: 767px) {
-    display: grid;
+  @media (max-width: 767px) {
     grid-template-columns: auto;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
+    justify-content: stretch;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: auto;
+    justify-content: stretch;
+    margin-bottom: 2rem;
   }
 `

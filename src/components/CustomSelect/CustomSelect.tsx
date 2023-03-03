@@ -22,7 +22,7 @@ export const CustomSelect = styled(Select).attrs({
     })
   }
 })`
-  min-width: 200px;
+  //min-width: 200px;
   border-radius: var(--radii);
   font-family: var(--family);
   border: none;
