@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     --family: 'Nunito Sans', sans-serif;
     --fs-sm: 14px;
     --fs-md: 16px;
+    --fs-lg: 18px;
     --fw-light: 300;
     --fw-normal: 600;
     --fw-bold: 800;
@@ -33,6 +34,7 @@ export const GlobalStyles = createGlobalStyle`
   
   html, body {
     font-family: var(--family);
+    font-size: var(--fs-md);
     color: var(--colors-text);
     font-weight: var(--fw-light);
     background-color: var(--colors-bg);
