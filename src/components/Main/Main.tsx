@@ -2,11 +2,12 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-import { Card, CountryT } from '../Card/Card'
+import { Card } from '../Card/Card'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
+import { CountryT } from '../Country/Country'
 
-const countryApi = axios.create({
+export const countryApi = axios.create({
   baseURL: 'https://restcountries.com/v3.1/',
   withCredentials: false
 })
