@@ -1,32 +1,34 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-export type CountryT = {
-  name: { common: string }
-  flags: { png: string }
-  population: number
-  capital: Array<string>
-  region: string
-}
+import { CountryT } from '../Country/Country'
 
 export const Card = ({ country }: { country: CountryT }) => {
   return (
-    <CardContainer>
-      <FlagImage src={country?.flags?.png} alt={'flag'} />
-      <CardData>
-        <div>{`${country?.name.common}`}</div>
-        <div>
-          <b>{'Population:'}</b> {country?.population}
-        </div>
-        <div>
-          <b>{'Capital:'}</b> {country.capital ? `${country?.capital[0]}` : `no data`}
-        </div>
-        <div>
-          <b>{'Region:'}</b> {country?.region}
-        </div>
-      </CardData>
-    </CardContainer>
+    <StyledNavLink to={`/country/${country.altSpellings[1]}`}>
+      <CardContainer>
+        <FlagImage src={country?.flags?.png} alt={'flag'} />
+        <CardData>
+          <div>{`${country?.name.common}`}</div>
+          <div>
+            <b>{'Population:'}</b> {country?.population}
+          </div>
+          <div>
+            <b>{'Capital:'}</b> {country.capital ? `${country?.capital[0]}` : `no data`}
+          </div>
+          <div>
+            <b>{'Region:'}</b> {country?.region}
+          </div>
+        </CardData>
+      </CardContainer>
+    </StyledNavLink>
   )
 }
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+`
 
 const CardContainer = styled.div`
   display: grid;
@@ -37,6 +39,11 @@ const CardContainer = styled.div`
   //justify-items: center;
   justify-self: center;
   width: 300px;
+
+  NavLink a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   @media (max-width: 767px) {
     //width: 300px;
