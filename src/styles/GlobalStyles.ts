@@ -6,13 +6,14 @@ export const GlobalStyles = createGlobalStyle`
     --family: 'Nunito Sans', sans-serif;
     --fs-sm: 14px;
     --fs-md: 16px;
-    --fs-lg: 18px;
+    --fs-lg: 24px;
     --fw-light: 300;
     --fw-normal: 600;
     --fw-bold: 800;
 
     /* Other */
     --radii: 0.5rem;
+    --colors-link: gray;
   }
 
   body[data-theme='dark'] {
