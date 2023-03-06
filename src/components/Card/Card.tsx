@@ -5,7 +5,7 @@ import { CountryT } from '../Country/Country'
 
 export const Card = ({ country }: { country: CountryT }) => {
   return (
-    <StyledNavLink to={`/country/${country.altSpellings[1]}`}>
+    <StyledNavLink to={`/country/${country.name.official}`}>
       <CardContainer>
         <FlagImage src={country?.flags?.png} alt={'flag'} />
         <CardData>
