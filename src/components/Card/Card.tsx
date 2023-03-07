@@ -28,6 +28,7 @@ export const Card = ({ country }: { country: CountryT }) => {
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: inherit;
+  justify-self: center;
 `
 
 const CardContainer = styled.div`
@@ -35,9 +36,6 @@ const CardContainer = styled.div`
   border-radius: var(--radii);
   box-shadow: var(--shadow);
   cursor: pointer;
-
-  //justify-items: center;
-  justify-self: center;
   width: 300px;
 
   NavLink a {
