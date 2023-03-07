@@ -56,62 +56,72 @@ export const Country = () => {
     bordersCountries = country.borders.map((item) => {
       return <StyledButton key={item}>{item}</StyledButton>
     })
-    //TOOO сheck if no borders
   }
+
+  // TODO border countries request
 
   return (
     <CountryContainer>
       <BackButton>Back</BackButton>
-      <CardData className={'CardData'}>
+      <CardData className="CardData">
         <FlagImage src={country?.flags?.png} alt={'flag'} />
-        <DataContainer className={'DataContainer'}>
+        <DataContainer className="DataContainer">
           <CountryName>{`${country?.name.common}`}</CountryName>
           <CountryData>
             <div>
-              <b>{'Official Name:'}</b> {country?.name.official}
+              <b>Official Name:&nbsp;</b>
+              {country?.name.official}
             </div>
             <div>
-              <b>{'Capital:'}</b> {country!.capital ? `${country?.capital[0]}` : `no data`}
+              <b>Capital:&nbsp;</b>
+              {country!.capital ? `${country?.capital[0]}` : `no data`}
             </div>
             <div>
-              <b>{'Area:'}</b> {country?.area}
+              <b>Area:&nbsp;</b>
+              {country?.area}
             </div>
             <div>
-              <b>{'Population:'}</b> {country?.population}
+              <b>Population:&nbsp;</b>
+              {country?.population}
             </div>
             <div>
-              <b>{'Region:'}</b> {country?.region}
+              <b>Region:&nbsp;</b>
+              {country?.region}
             </div>
             <div>
-              <b>{'Sub Region:'}</b> {country?.subregion}
+              <b>Sub Region:&nbsp;</b>
+              {country?.subregion}
             </div>
             <div>
-              <b>{'Continent:'}</b> {country?.continents[0]}
+              <b>Continent:&nbsp;</b>
+              {country?.continents[0]}
             </div>
             <div>
-              <b>{'Currencies:'}</b> {currency} ({currencySymbol})
+              <b>Currencies:&nbsp;</b>
+              {currency} ({currencySymbol})
             </div>
             <div>
-              <b>{'Languages:'}</b> {language}
+              <b>Languages:&nbsp;</b>
+              {language}
             </div>
             <div>
-              <b>{'Link to Google map:'}</b>{' '}
+              <b>Link to Google map:&nbsp;</b>
               <a
                 href={country?.maps?.googleMaps ? country.maps.googleMaps : '#'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Link to Google map
+                Link
               </a>
             </div>
             <div>
-              <b>{'Link to Google street map:'}</b>{' '}
+              <b>Link to Google street map:&nbsp;</b>{' '}
               <a
                 href={country?.maps?.openStreetMaps ? country.maps.openStreetMaps : '#'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Link to Google street map
+                Link
               </a>
             </div>
             <div>
@@ -119,8 +129,8 @@ export const Country = () => {
             </div>
           </CountryData>
           <CountryBoarders>
-            <b>{'Boarder Countries:'}</b>
-            {bordersCountries}
+            <b>Boarder Countries:&nbsp;</b>
+            <div>{bordersCountries !== null ? bordersCountries : 'no countries'}</div>
           </CountryBoarders>
         </DataContainer>
       </CardData>
@@ -134,14 +144,6 @@ const CountryContainer = styled.div`
   box-shadow: var(--shadow);
   cursor: pointer;
   justify-self: center;
-
-  @media (max-width: 767px) {
-    //width: 300px;
-  }
-
-  @media (max-width: 480px) {
-    //width: 300px;
-  }
 `
 
 const CardData = styled.div`
@@ -149,13 +151,19 @@ const CardData = styled.div`
   grid-template-areas: 'FlagImage DataContainer';
   grid-template-columns: 560px 1fr;
   padding: 1rem 2rem;
+  min-width: 1280px;
 
   @media (max-width: 767px) {
-    //width: 100%;
+    min-width: 660px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'FlagImage'
+      'DataContainer';
   }
 
   @media (max-width: 480px) {
-    //width: 100%;
+    min-width: 420px;
   }
 `
 
@@ -166,11 +174,11 @@ const FlagImage = styled.img`
   border-radius: var(--radii);
 
   @media (max-width: 767px) {
-    //width: 100%;
+    height: 350px;
   }
 
   @media (max-width: 480px) {
-    //width: 100%;
+    height: 250px;
   }
 `
 
@@ -185,11 +193,9 @@ const DataContainer = styled.div`
   padding: 1rem;
 
   @media (max-width: 767px) {
-    //width: 100%;
   }
 
   @media (max-width: 480px) {
-    //width: 100%;
   }
 `
 
@@ -198,7 +204,13 @@ const CountryName = styled.div`
   grid-area: CountryName;
   font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
-  padding: 1rem 1rem 2rem 1rem;
+  padding: 1.5rem 1rem 2rem 1rem;
+
+  @media (max-width: 767px) {
+  }
+
+  @media (max-width: 480px) {
+  }
 `
 
 const CountryData = styled.div`
@@ -208,13 +220,10 @@ const CountryData = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
-  //height: 20px;
   align-items: center;
-  //justify-items: start;
-  //border: 1px solid yellow;
 
   & div {
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
   }
 
   & div b {
@@ -226,6 +235,14 @@ const CountryData = styled.div`
     text-decoration: underline dotted;
     color: var(--colors-link);
   }
+
+  @media (max-width: 767px) {
+  }
+
+  @media (max-width: 480px) {
+    grid-template-rows: repeat(12, auto);
+    grid-template-columns: 1fr;
+  }
 `
 
 const CountryBoarders = styled.div`
@@ -234,27 +251,51 @@ const CountryBoarders = styled.div`
   grid-auto-flow: column;
   justify-content: start;
   align-items: center;
-  //border: 1px solid blue;
   padding: 2rem 1rem;
+
+  & b {
+    font-weight: var(--fw-bold);
+  }
+
+  @media (max-width: 767px) {
+    & b {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: repeat(1, auto);
+    grid-template-columns: 1fr;
+
+    & b {
+      margin: 0 0 1rem 0;
+    }
+  }
 `
 
 const BackButton = styled.button`
-  display: grid;
   color: var(--colors-text);
   border-style: none;
   padding: 2rem 0;
   background-color: transparent;
-  //border: 1px solid var(--colors-text);
 `
 
 const StyledButton = styled.button`
-  display: grid;
   width: 50px;
   color: var(--colors-text);
-  background-color: transparent;
+  background-color: var(--colors-ui-base);
   padding: 0.5rem;
   margin: 0 0 0 1rem;
-  //border-style: none;
-  border: 1px solid var(--colors-text);
-  border-radius: var(--radii);
+  border-style: none;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+
+  @media (max-width: 767px) {
+  }
+
+  @media (max-width: 480px) {
+    margin: 0 1rem 0 0;
+  }
 `
