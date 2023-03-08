@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import { useDebounce } from '../../hooks/useDebounce'
 import { Card } from '../Card/Card'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
@@ -21,6 +22,7 @@ export const Main = () => {
   const [search, setSearch] = useState<string>('')
   const [region, setRegion] = useState<RegionT>({ value: 'America', label: 'America' })
   const [countriesData, setCountriesData] = useState<Array<CountryT>>([])
+  const debouncedSearch = useDebounce(search)
 
   const getRegions = useCallback((regionValue: string) => {
     void countryApi.get<CountryT[]>(`region/${regionValue}`).then((response) => {
@@ -42,8 +44,8 @@ export const Main = () => {
   }, [])
 
   useEffect(() => {
-    searchCountries(search)
-  }, [search, searchCountries])
+    searchCountries(debouncedSearch)
+  }, [debouncedSearch, searchCountries])
 
   return (
     <MainWrapper>
