@@ -25,7 +25,7 @@ export const GlobalStyles = createGlobalStyle`
     --shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
   }
   body[data-theme='light'] {
-    --colors-text: hsl(200, 15%, 8%); //#111517
+    --colors-text: #111517;
     --colors-bg: hsl(0, 0%, 98%);
     --colors-ui-base: hsl(0, 0%, 100%);
     --colors-placeholder: hsl(0, 0%, 41%);
