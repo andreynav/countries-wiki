@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { useDebounce } from '../../hooks/useDebounce'
-import { Card } from '../Card/Card'
+import { CardList } from '../CardList/CardList'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
 import { CountryT } from '../Country/Country'
@@ -24,7 +24,7 @@ export const Main = () => {
   const [countriesData, setCountriesData] = useState<Array<CountryT>>([])
   const debouncedSearch = useDebounce(search)
 
-  const getRegions = useCallback((regionValue: string) => {
+  const getRegion = useCallback((regionValue: string) => {
     void countryApi.get<CountryT[]>(`region/${regionValue}`).then((response) => {
       const data = response.data
       setCountriesData(data)
@@ -32,8 +32,8 @@ export const Main = () => {
   }, [])
 
   useEffect(() => {
-    getRegions(region.value)
-  }, [region, search, getRegions])
+    getRegion(region.value)
+  }, [region, search, getRegion])
 
   const searchCountries = useCallback((searchValue: string) => {
     if (searchValue.length === 0) return
@@ -51,11 +51,7 @@ export const Main = () => {
     <MainWrapper>
       <Container>
         <Controls search={search} setSearch={setSearch} region={region} setRegion={setRegion} />
-        <CardList>
-          {countriesData.map((country: CountryT) => {
-            return <Card key={country.name.common} country={country} />
-          })}
-        </CardList>
+        <CardList countries={countriesData} />
       </Container>
     </MainWrapper>
   )
@@ -69,23 +65,5 @@ const MainWrapper = styled.div`
   }
 
   @media (max-width: 480px) {
-  }
-`
-const CardList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2rem;
-  justify-content: space-between;
-
-  @media (max-width: 767px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
-    justify-content: space-between;
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    grid-gap: 2rem;
-    justify-content: space-between;
   }
 `

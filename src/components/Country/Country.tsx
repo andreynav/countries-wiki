@@ -114,7 +114,7 @@ export const Country = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Link
+                link
               </a>
             </div>
             <div>
@@ -124,7 +124,7 @@ export const Country = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Link
+                link
               </a>
             </div>
             <div>
@@ -239,7 +239,7 @@ const CountryData = styled.div`
 
   & a:link,
   a:visited {
-    text-decoration: underline dotted;
+    text-decoration: none;
     color: var(--colors-link);
   }
 
