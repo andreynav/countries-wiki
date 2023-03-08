@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { Card } from '../Card/Card'
@@ -20,25 +20,37 @@ export type RegionT = {
 export const Main = () => {
   const [search, setSearch] = useState<string>('')
   const [region, setRegion] = useState<RegionT>({ value: 'America', label: 'America' })
-  const [dataApi, setDataApi] = useState<Array<CountryT>>([])
+  const [countriesData, setCountriesData] = useState<Array<CountryT>>([])
 
-  const getRegions = (regionValue: string) => {
-    void countryApi.get<Array<CountryT>>(`region/${regionValue}`).then((response) => {
+  const getRegions = useCallback((regionValue: string) => {
+    void countryApi.get<CountryT[]>(`region/${regionValue}`).then((response) => {
       const data = response.data
-      setDataApi(data)
+      setCountriesData(data)
     })
-  }
+  }, [])
 
   useEffect(() => {
     getRegions(region.value)
-  }, [region, setRegion])
+  }, [region, search, getRegions])
+
+  const searchCountries = useCallback((searchValue: string) => {
+    if (searchValue.length === 0) return
+    void countryApi.get<CountryT[]>(`/name/${searchValue}`).then((response) => {
+      const data = response.data
+      setCountriesData(data)
+    })
+  }, [])
+
+  useEffect(() => {
+    searchCountries(search)
+  }, [search, searchCountries])
 
   return (
     <MainWrapper>
       <Container>
         <Controls search={search} setSearch={setSearch} region={region} setRegion={setRegion} />
         <CardList>
-          {dataApi.map((country: CountryT) => {
+          {countriesData.map((country: CountryT) => {
             return <Card key={country.name.common} country={country} />
           })}
         </CardList>
@@ -52,11 +64,9 @@ const MainWrapper = styled.div`
   padding: 2rem 0;
 
   @media (max-width: 767px) {
-    //grid-template-columns: 1fr;
   }
 
   @media (max-width: 480px) {
-    //grid-template-columns: 1fr;
   }
 `
 const CardList = styled.div`

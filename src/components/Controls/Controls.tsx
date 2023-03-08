@@ -18,7 +18,7 @@ export const Controls = ({ search, setSearch, region, setRegion }: any) => {
       <CustomSelect
         options={options}
         placeholder={'Filter by region'}
-        isClearable
+        isClearable={false}
         isSearchable={false}
         value={region}
         onChange={setRegion}

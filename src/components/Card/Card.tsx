@@ -44,11 +44,9 @@ const CardContainer = styled.div`
   }
 
   @media (max-width: 767px) {
-    //width: 300px;
   }
 
   @media (max-width: 480px) {
-    //width: 300px;
   }
 `
 
@@ -59,11 +57,9 @@ const FlagImage = styled.img`
   height: 150px;
 
   @media (max-width: 767px) {
-    //width: 100%;
   }
 
   @media (max-width: 480px) {
-    //width: 100%;
   }
 `
 const CardData = styled.div`
