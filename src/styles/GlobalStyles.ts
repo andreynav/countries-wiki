@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 
     /* Other */
     --radii: 0.5rem;
-    --colors-link: gray;
+    --colors-link: #26a4f5;
   }
 
   body[data-theme='dark'] {
