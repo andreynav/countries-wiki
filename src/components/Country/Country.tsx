@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { BackButton } from '../BackButton/BackButton'
 import { countryApi } from '../Main/Main'
 
 export type CountryT = {
@@ -62,7 +63,9 @@ export const Country = () => {
 
   return (
     <CountryContainer>
-      <BackButton>Back</BackButton>
+      <ButtonContainer>
+        <BackButton />
+      </ButtonContainer>
       <CardData className="CardData">
         <FlagImage src={country?.flags?.png} alt={'flag'} />
         <DataContainer className="DataContainer">
@@ -144,6 +147,10 @@ const CountryContainer = styled.div`
   box-shadow: var(--shadow);
   cursor: pointer;
   justify-self: center;
+`
+
+const ButtonContainer = styled.div`
+  margin: 2rem 2rem 1rem 2rem;
 `
 
 const CardData = styled.div`
@@ -273,13 +280,6 @@ const CountryBoarders = styled.div`
       margin: 0 0 1rem 0;
     }
   }
-`
-
-const BackButton = styled.button`
-  color: var(--colors-text);
-  border-style: none;
-  padding: 2rem 0;
-  background-color: transparent;
 `
 
 const StyledButton = styled.button`
