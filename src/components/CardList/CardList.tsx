@@ -1,7 +1,7 @@
 import styled from 'styled-components/'
 
+import { CountryT } from '../../types/types'
 import { Card } from '../Card/Card'
-import { CountryT } from '../Country/Country'
 
 export const CardList = ({ countries }: { countries: CountryT[] }) => {
   return (

@@ -2,45 +2,20 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { countryAPI } from '../../api/api'
+import { CountryT } from '../../types/types'
 import { BackButton } from '../BackButton/BackButton'
-import { countryApi } from '../Main/Main'
-
-export type CountryT = {
-  name: { common: string; official: string }
-  flags: { png: string }
-  population: number
-  capital: Array<string>
-  region: string
-  altSpellings: Array<string>
-  area: number
-  continents: Array<string>
-  languages: { [key: string]: string }
-  currencies: {
-    [key: string]: { name: string; symbol: string }
-  }
-  language: string
-  maps: {
-    googleMaps: string
-    openStreetMaps: string
-  }
-  timezones: Array<string>
-  subregion: string
-  borders: Array<string>
-}
 
 export const Country = () => {
   const params = useParams<{ name: string }>()
   const [country, setCountry] = useState<CountryT | null>(null)
 
-  const getCountry = (countryCode: string) => {
-    void countryApi.get(`name/${countryCode}`).then((response) => {
-      const data = response.data
-      setCountry(data[0])
-    })
+  const getCountry = async (countryCode: string) => {
+    return await countryAPI.getCountry(countryCode)
   }
 
   useEffect(() => {
-    getCountry(params.name!)
+    getCountry(params.name!).then((data) => setCountry(data[0]!))
   }, [params.name])
 
   if (!country) return <div>Loader...</div>
@@ -55,7 +30,7 @@ export const Country = () => {
   let bordersCountries = null
   if (country?.borders?.length > 0) {
     bordersCountries = country.borders.map((item) => {
-      return <StyledButton key={item}>{item}</StyledButton>
+      return <BoarderCountryButton key={item}>{item}</BoarderCountryButton>
     })
   }
 
@@ -257,7 +232,7 @@ const CountryBoarders = styled.div`
   grid-area: CountryBoarders;
   grid-auto-flow: column;
   justify-content: start;
-  align-items: center;
+  line-height: 50px;
   padding: 2rem 1rem;
 
   & b {
@@ -277,17 +252,17 @@ const CountryBoarders = styled.div`
     grid-template-columns: 1fr;
 
     & b {
-      margin: 0 0 1rem 0;
+      //margin: 0 0 1rem 0;
     }
   }
 `
 
-const StyledButton = styled.button`
+const BoarderCountryButton = styled.button`
   width: 50px;
   color: var(--colors-text);
   background-color: var(--colors-ui-base);
   padding: 0.5rem;
-  margin: 0 0 0 1rem;
+  margin: 0 0 1rem 1rem;
   border-style: none;
   box-shadow: var(--shadow);
   cursor: pointer;
@@ -296,6 +271,6 @@ const StyledButton = styled.button`
   }
 
   @media (max-width: 480px) {
-    margin: 0 1rem 0 0;
+    margin: 0 1rem 1rem 0;
   }
 `

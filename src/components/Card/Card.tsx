@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { CountryT } from '../Country/Country'
+import { CountryT } from '../../types/types'
 
 export const Card = ({ country }: { country: CountryT }) => {
   return (

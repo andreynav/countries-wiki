@@ -1,22 +1,12 @@
-import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import { countryAPI } from '../../api/api'
 import { useDebounce } from '../../hooks/useDebounce'
+import { CountryT, RegionT } from '../../types/types'
 import { CardList } from '../CardList/CardList'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
-import { CountryT } from '../Country/Country'
-
-export const countryApi = axios.create({
-  baseURL: 'https://restcountries.com/v3.1/',
-  withCredentials: false
-})
-
-export type RegionT = {
-  value: string
-  label: string
-}
 
 export const Main = () => {
   const [search, setSearch] = useState<string>('')
@@ -24,28 +14,26 @@ export const Main = () => {
   const [countriesData, setCountriesData] = useState<Array<CountryT>>([])
   const debouncedSearch = useDebounce(search)
 
-  const getRegion = useCallback((regionValue: string) => {
-    void countryApi.get<CountryT[]>(`region/${regionValue}`).then((response) => {
-      const data = response.data
-      setCountriesData(data)
-    })
-  }, [])
+  const fetchRegionData = async (regionValue: string) => {
+    return await countryAPI.getRegion(regionValue)
+  }
 
   useEffect(() => {
-    getRegion(region.value)
-  }, [region, search, getRegion])
+    fetchRegionData(region.value).then((data) => setCountriesData(data))
+  }, [region.value, search])
 
-  const searchCountries = useCallback((searchValue: string) => {
+  const searchCountries = useCallback(async (searchValue: string) => {
     if (searchValue.length === 0) return
-    void countryApi.get<CountryT[]>(`/name/${searchValue}`).then((response) => {
-      const data = response.data
-      setCountriesData(data)
-    })
+
+    return await countryAPI.searchCountries(searchValue)
+    // setCountriesData(data)
   }, [])
 
   useEffect(() => {
-    searchCountries(debouncedSearch)
-  }, [debouncedSearch, searchCountries])
+    searchCountries(debouncedSearch).then((data) => setCountriesData(data!))
+  }, [debouncedSearch])
+
+  if (!countriesData) return <div>Loader...</div>
 
   return (
     <MainWrapper>
