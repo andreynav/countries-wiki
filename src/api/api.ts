@@ -14,7 +14,7 @@ export const countryAPI = {
   searchCountries: (searchValue: string) => {
     return country.get<CountryT[]>(`/name/${searchValue}`).then((response) => response.data)
   },
-  getCountry: (countryCode: string) => {
-    return country.get<CountryT[]>(`name/${countryCode}`).then((response) => response.data)
+  getBorderCountryNameByCode: (BorderCountryCode: string) => {
+    return country.get<CountryT>(`alpha/${BorderCountryCode}`).then((response) => response.data)
   }
 }

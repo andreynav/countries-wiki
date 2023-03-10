@@ -26,7 +26,6 @@ export const Main = () => {
     if (searchValue.length === 0) return
 
     return await countryAPI.searchCountries(searchValue)
-    // setCountriesData(data)
   }, [])
 
   useEffect(() => {
