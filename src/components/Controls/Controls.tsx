@@ -12,6 +12,10 @@ const options = [
 ]
 
 export const Controls = ({ search, setSearch, region, setRegion }: any) => {
+  const onSetRegion = (value: any) => {
+    setSearch('')
+    setRegion(value)
+  }
   return (
     <ControlsContainer>
       <Search search={search} setSearch={setSearch} />
@@ -21,7 +25,7 @@ export const Controls = ({ search, setSearch, region, setRegion }: any) => {
         isClearable={false}
         isSearchable={false}
         value={region}
-        onChange={setRegion}
+        onChange={(value) => onSetRegion(value)}
       />
     </ControlsContainer>
   )

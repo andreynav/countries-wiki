@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Country } from '../Country/Country'
 import { Header } from '../Header/Header'
 import { Main } from '../Main/Main'
+import { NotFound } from '../NotFound/NotFound'
 
 export const App = () => {
   return (
@@ -11,7 +12,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/country/:name" element={<Country />} />
-        {/*<Route path="/*" element={<NotFound />} />*/}
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
   )
