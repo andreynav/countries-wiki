@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { CountryT } from '../../types/types'
+import { splitNumber } from '../../utils/splitNumber'
 
 export const Card = ({ country }: { country: CountryT }) => {
   return (
@@ -14,10 +15,11 @@ export const Card = ({ country }: { country: CountryT }) => {
             <b>{'Capital:'}</b> {country.capital ? `${country?.capital[0]}` : `no data`}
           </div>
           <div>
-            <b>{'Population:'}</b> {country?.population}
+            <b>{'Population:'}</b> {splitNumber(country?.population)}
           </div>
           <div>
-            <b>{'Region:'}</b> {country?.region}
+            <b>{'Area:'}</b> {splitNumber(country?.area)} {'km'}
+            {<sup>2</sup>}
           </div>
         </CardData>
       </CardContainer>
@@ -80,5 +82,9 @@ const CardData = styled.div`
 
   & div b {
     font-weight: var(--fw-normal);
+  }
+
+  & div sup {
+    font-size: var(--fs-esm);
   }
 `

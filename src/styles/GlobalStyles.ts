@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     /* Typography */
     --family: 'Montserrat', sans-serif;
+    --fs-esm: 12px;
     --fs-sm: 14px;
     --fs-md: 16px;
     --fs-lg: 24px;
