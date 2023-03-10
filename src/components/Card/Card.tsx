@@ -11,10 +11,10 @@ export const Card = ({ country }: { country: CountryT }) => {
         <CardData>
           <div>{`${country?.name.common}`}</div>
           <div>
-            <b>{'Population:'}</b> {country?.population}
+            <b>{'Capital:'}</b> {country.capital ? `${country?.capital[0]}` : `no data`}
           </div>
           <div>
-            <b>{'Capital:'}</b> {country.capital ? `${country?.capital[0]}` : `no data`}
+            <b>{'Population:'}</b> {country?.population}
           </div>
           <div>
             <b>{'Region:'}</b> {country?.region}
@@ -37,6 +37,7 @@ const CardContainer = styled.div`
   box-shadow: var(--shadow);
   cursor: pointer;
   width: 300px;
+  min-height: 415px;
 
   NavLink a {
     text-decoration: none;
@@ -65,8 +66,7 @@ const FlagImage = styled.img`
 const CardData = styled.div`
   display: grid;
   padding: 1rem 2rem;
-  //min-height: 250px;
-  //align-content: start;
+  align-self: start;
 
   & div:first-of-type {
     font-size: var(--fs-lg);
@@ -76,5 +76,9 @@ const CardData = styled.div`
 
   & div {
     padding: 0.5rem 0;
+  }
+
+  & div b {
+    font-weight: var(--fw-normal);
   }
 `

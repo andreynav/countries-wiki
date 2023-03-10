@@ -18,6 +18,7 @@ const StyledCardList = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem;
   justify-content: space-between;
+  align-items: stretch;
 
   @media (max-width: 767px) {
     grid-template-columns: repeat(2, 1fr);
