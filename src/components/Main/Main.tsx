@@ -7,11 +7,13 @@ import { CountryT, RegionT } from '../../types/types'
 import { CardList } from '../CardList/CardList'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
+import { NotFound } from '../NotFound/NotFound'
 
 export const Main = () => {
   const [search, setSearch] = useState<string>('')
   const [region, setRegion] = useState<RegionT>({ value: 'America', label: 'America' })
   const [countriesData, setCountriesData] = useState<Array<CountryT>>([])
+  const [error, setError] = useState(false)
   const debouncedSearch = useDebounce(search)
 
   const fetchRegionData = async (regionValue: string) => {
@@ -29,8 +31,15 @@ export const Main = () => {
   }, [])
 
   useEffect(() => {
-    searchCountries(debouncedSearch).then((data) => setCountriesData(data!))
-  }, [debouncedSearch])
+    searchCountries(debouncedSearch)
+      .then((data) => {
+        setError(false)
+        if (data) setCountriesData(data)
+      })
+      .catch((error) => {
+        if (error.response.status === 404) setError(true)
+      })
+  }, [debouncedSearch, error])
 
   if (!countriesData) return <div>Loader...</div>
 
@@ -38,7 +47,7 @@ export const Main = () => {
     <MainWrapper>
       <Container>
         <Controls search={search} setSearch={setSearch} region={region} setRegion={setRegion} />
-        <CardList countries={countriesData} />
+        {error ? <NotFound setSearch={setSearch} /> : <CardList countries={countriesData} />}
       </Container>
     </MainWrapper>
   )
@@ -47,6 +56,11 @@ export const Main = () => {
 const MainWrapper = styled.div`
   display: grid;
   padding: 2rem 0;
+  height: calc(100vh - 82px);
+
+  & div {
+    grid-template-rows: auto 1fr;
+  }
 
   @media (max-width: 767px) {
   }

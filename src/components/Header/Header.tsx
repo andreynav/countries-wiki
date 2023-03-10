@@ -19,7 +19,7 @@ export const Header = () => {
     <HeaderElement>
       <Container>
         <Wrapper>
-          <Title>Where is the world?</Title>
+          <Title>Where in the world?</Title>
           <ModeSwitcher onClick={onSwitchTheme}>
             {theme === 'light' ? <IoMoonOutline size={'14px'} /> : <IoMoon size={'14px'} />}
             <div style={{ marginLeft: '0.75rem' }}>{theme} theme</div>
@@ -44,9 +44,7 @@ const Wrapper = styled.div`
   padding: 2rem 0;
 `
 
-const Title = styled.div.attrs({
-  to: '/'
-})`
+const Title = styled.div`
   display: grid;
   color: var(--colors-text);
   font-size: var(--fs-sm);
