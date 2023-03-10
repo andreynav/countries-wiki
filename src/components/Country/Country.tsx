@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { countryAPI } from '../../api/api'
 import { CountryT } from '../../types/types'
+import { splitNumber } from '../../utils/splitNumber'
 import { BackButton } from '../BackButton/BackButton'
 
 export const Country = () => {
@@ -81,11 +82,12 @@ export const Country = () => {
             </div>
             <div>
               <b>Area:&nbsp;</b>
-              {country?.area}
+              {splitNumber(country?.area)} {'km'}
+              {<sup>2</sup>}
             </div>
             <div>
               <b>Population:&nbsp;</b>
-              {country?.population}
+              {splitNumber(country?.population)}
             </div>
             <div>
               <b>Region:&nbsp;</b>
@@ -235,6 +237,10 @@ const CountryData = styled.div`
 
   & div b {
     font-weight: var(--fw-normal);
+  }
+
+  & div sup {
+    font-size: var(--fs-esm);
   }
 
   & a:link,
