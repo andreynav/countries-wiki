@@ -1,9 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600:800&display=swap');
+  
   :root {
     /* Typography */
-    --family: 'Nunito Sans', sans-serif;
+    --family: 'Montserrat', sans-serif;
     --fs-sm: 14px;
     --fs-md: 16px;
     --fs-lg: 24px;
