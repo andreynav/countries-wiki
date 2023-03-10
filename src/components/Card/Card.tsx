@@ -65,6 +65,8 @@ const FlagImage = styled.img`
 const CardData = styled.div`
   display: grid;
   padding: 1rem 2rem;
+  //min-height: 250px;
+  //align-content: start;
 
   & div:first-of-type {
     font-size: var(--fs-lg);

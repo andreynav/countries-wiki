@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { countryAPI } from '../../api/api'
@@ -9,14 +9,48 @@ import { BackButton } from '../BackButton/BackButton'
 export const Country = () => {
   const params = useParams<{ name: string }>()
   const [country, setCountry] = useState<CountryT | null>(null)
+  const [borderCountryNameList, setBorderCountryNameList] = useState<string[]>([])
 
   const getCountry = async (countryCode: string) => {
-    return await countryAPI.getCountry(countryCode)
+    return await countryAPI.searchCountries(countryCode)
   }
 
   useEffect(() => {
     getCountry(params.name!).then((data) => setCountry(data[0]!))
   }, [params.name])
+
+  const getBorderCountryNameByCode = async (BorderCountryCode: string) => {
+    return await countryAPI.getBorderCountryNameByCode(BorderCountryCode)
+  }
+
+  useEffect(() => {
+    if (country?.borders?.length) {
+      Promise.all(
+        country.borders.map(async (borderCountryCode) => {
+          const borderCountry = await getBorderCountryNameByCode(borderCountryCode)
+          // @ts-ignore
+          return borderCountry[0]?.name.common
+        })
+      )
+        .then((borderCountryNames) => {
+          setBorderCountryNameList(borderCountryNames)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+  }, [country])
+
+  let bordersCountries = null
+  if (borderCountryNameList?.length > 0) {
+    bordersCountries = borderCountryNameList?.map((item) => {
+      return (
+        <StyledNavLink key={item} to={`/country/${item}`}>
+          <BoarderCountryButton>{item}</BoarderCountryButton>
+        </StyledNavLink>
+      )
+    })
+  }
 
   if (!country) return <div>Loader...</div>
 
@@ -26,15 +60,6 @@ export const Country = () => {
   const currencyKey: string | undefined = Object.keys(country.currencies)[0]
   const currency = country.currencies[currencyKey!]?.name
   const currencySymbol = country.currencies[currencyKey!]?.symbol
-
-  let bordersCountries = null
-  if (country?.borders?.length > 0) {
-    bordersCountries = country.borders.map((item) => {
-      return <BoarderCountryButton key={item}>{item}</BoarderCountryButton>
-    })
-  }
-
-  // TODO border countries request
 
   return (
     <CountryContainer>
@@ -232,7 +257,7 @@ const CountryBoarders = styled.div`
   grid-area: CountryBoarders;
   grid-auto-flow: column;
   justify-content: start;
-  line-height: 50px;
+  line-height: 36px;
   padding: 2rem 1rem;
 
   & b {
@@ -258,7 +283,7 @@ const CountryBoarders = styled.div`
 `
 
 const BoarderCountryButton = styled.button`
-  width: 50px;
+  width: auto;
   color: var(--colors-text);
   background-color: var(--colors-ui-base);
   padding: 0.5rem;
@@ -273,4 +298,10 @@ const BoarderCountryButton = styled.button`
   @media (max-width: 480px) {
     margin: 0 1rem 1rem 0;
   }
+`
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+  justify-self: center;
 `
