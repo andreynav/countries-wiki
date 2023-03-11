@@ -17,18 +17,13 @@ const StyledCardList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem;
-  justify-content: space-between;
-  align-items: stretch;
+  padding-bottom: 2rem;
 
   @media (max-width: 767px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
-    justify-content: space-between;
   }
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
-    grid-gap: 2rem;
-    justify-content: space-between;
   }
 `

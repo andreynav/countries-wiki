@@ -61,10 +61,4 @@ const MainWrapper = styled.div`
   & div {
     grid-template-rows: auto 1fr;
   }
-
-  @media (max-width: 767px) {
-  }
-
-  @media (max-width: 480px) {
-  }
 `
