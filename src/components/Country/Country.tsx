@@ -13,45 +13,38 @@ export const Country = () => {
   const [borderCountryNameList, setBorderCountryNameList] = useState<string[]>([])
 
   const getCountry = async (countryCode: string) => {
-    return await countryAPI.searchCountries(countryCode)
+    const countryData = await countryAPI.searchCountries(countryCode)
+    return countryData[0] || null
   }
 
   useEffect(() => {
-    getCountry(params.name!).then((data) => setCountry(data[0]!))
+    getCountry(params.name!).then((data) => setCountry(data))
   }, [params.name])
 
-  const getBorderCountryNameByCode = async (BorderCountryCode: string) => {
-    return await countryAPI.getBorderCountryNameByCode(BorderCountryCode)
+  const getBorderCountryNameByCode = async (borderCountryCode: string) => {
+    return await countryAPI.getBorderCountryNameByCode(borderCountryCode)
+    // const borderCountryData = await countryAPI.getBorderCountryNameByCode(borderCountryCode)
+    // return borderCountryData[0]?.name.common || ''
   }
 
   useEffect(() => {
-    if (country?.borders?.length) {
-      Promise.all(
-        country.borders.map(async (borderCountryCode) => {
-          const borderCountry = await getBorderCountryNameByCode(borderCountryCode)
-          // @ts-ignore
-          return borderCountry[0]?.name.common
-        })
-      )
-        .then((borderCountryNames) => {
-          setBorderCountryNameList(borderCountryNames)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+    if (!country?.borders?.length) {
+      return
     }
+    Promise.all(
+      country.borders.map(async (borderCountryCode) => {
+        const borderCountry = await getBorderCountryNameByCode(borderCountryCode)
+        // @ts-ignore
+        return borderCountry[0]?.name.common
+      })
+    )
+      .then((borderCountryNames) => {
+        setBorderCountryNameList(borderCountryNames)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }, [country])
-
-  let bordersCountries = null
-  if (borderCountryNameList?.length > 0) {
-    bordersCountries = borderCountryNameList?.map((item) => {
-      return (
-        <StyledNavLink key={item} to={`/country/${item}`}>
-          <BoarderCountryButton>{item}</BoarderCountryButton>
-        </StyledNavLink>
-      )
-    })
-  }
 
   if (!country) return <div>Loader...</div>
 
@@ -61,6 +54,17 @@ export const Country = () => {
   const currencyKey: string | undefined = Object.keys(country.currencies)[0]
   const currency = country.currencies[currencyKey!]?.name
   const currencySymbol = country.currencies[currencyKey!]?.symbol
+
+  let bordersCountries = null
+  if (borderCountryNameList?.length > 0) {
+    bordersCountries = borderCountryNameList?.map((borderCountryName) => {
+      return (
+        <StyledNavLink key={borderCountryName} to={`/country/${borderCountryName}`}>
+          <BoarderCountryButton>{borderCountryName}</BoarderCountryButton>
+        </StyledNavLink>
+      )
+    })
+  }
 
   return (
     <CountryContainer>
@@ -225,14 +229,13 @@ const CountryName = styled.div`
 const CountryData = styled.div`
   display: grid;
   grid-area: CountryData;
-  grid-template-rows: repeat(6, 32px);
+  grid-template-rows: repeat(6, minmax(32px, auto));
   grid-template-columns: repeat(2, 1fr);
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
-  align-items: center;
 
   & div {
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
   }
 
   & div b {
