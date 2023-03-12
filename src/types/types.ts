@@ -3,19 +3,25 @@ export type RegionT = {
   label: string
 }
 
+export type LanguagesT = { [key: string]: string }
+export type CurrencyT = {
+  [key: string]: { name: string; symbol: string }
+}
+
 export type CountryT = {
   name: { common: string; official: string }
-  flags: { png: string }
+  flags: {
+    png: string
+    alt: string
+  }
   population: number
   capital: Array<string>
   region: string
   altSpellings: Array<string>
   area: number
   continents: Array<string>
-  languages: { [key: string]: string }
-  currencies: {
-    [key: string]: { name: string; symbol: string }
-  }
+  languages: LanguagesT
+  currencies: CurrencyT
   language: string
   maps: {
     googleMaps: string
