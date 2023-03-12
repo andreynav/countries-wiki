@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 import { countryAPI } from '../../api/api'
 import { CountryT } from '../../types/types'
+import { getCurrency } from '../../utils/getCurrency'
+import { getLanguages } from '../../utils/getLanguages'
 import { splitNumber } from '../../utils/splitNumber'
 import { BackButton } from '../BackButton/BackButton'
 
@@ -48,13 +50,6 @@ export const Country = () => {
 
   if (!country) return <div>Loader...</div>
 
-  const languageKey: string | undefined = Object.keys(country.languages)[0]
-  const language = country.languages[languageKey!]
-
-  const currencyKey: string | undefined = Object.keys(country.currencies)[0]
-  const currency = country.currencies[currencyKey!]?.name
-  const currencySymbol = country.currencies[currencyKey!]?.symbol
-
   let bordersCountries = null
   if (borderCountryNameList?.length > 0) {
     bordersCountries = borderCountryNameList?.map((borderCountryName) => {
@@ -72,7 +67,7 @@ export const Country = () => {
         <BackButton />
       </ButtonContainer>
       <CardData className="CardData">
-        <FlagImage src={country?.flags?.png} alt={'flag'} />
+        <FlagImage src={country?.flags?.png} alt={country?.flags?.alt} />
         <DataContainer className="DataContainer">
           <CountryName>{`${country?.name.common}`}</CountryName>
           <CountryData>
@@ -107,11 +102,12 @@ export const Country = () => {
             </div>
             <div>
               <b>Currencies:&nbsp;</b>
-              {currency} ({currencySymbol})
+              {/*{currency} ({currencySymbol})*/}
+              {getCurrency(country.currencies)}
             </div>
             <div>
               <b>Languages:&nbsp;</b>
-              {language}
+              {getLanguages(country.languages)}
             </div>
             <div>
               <b>Link to Google map:&nbsp;</b>
@@ -134,7 +130,7 @@ export const Country = () => {
               </a>
             </div>
             <div>
-              <b>{'Timezones:'}</b> {country?.timezones[0]}
+              <b>{'Timezones:'}</b> {country?.timezones.map((timezone) => timezone).join(', ')}
             </div>
           </CountryData>
           <CountryBoarders>
