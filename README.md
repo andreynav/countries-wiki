@@ -1,10 +1,21 @@
+<div align="center">
+
+![GitHub repo size](https://img.shields.io/github/repo-size/andreynav/countries-wiki?style=for-the-badge)
+![GitHub deployments](https://img.shields.io/github/deployments/andreynav/countries-wiki/Production%20%E2%80%93%20countries-wiki-andyn?label=vercel%20deployment&style=for-the-badge)
+![Website](https://img.shields.io/website?label=countries%20wiki&style=for-the-badge&url=https%3A%2F%2Fcountries-wiki-prod.vercel.app%2F)
+
+</div>
+
 # General Notes
 
-The project is a web application with information about countries around the world. You can select an unavailable region of the world or search the country of interest directly. The project is made using React, React Router and Styled components.
+The project is a web application with information about countries all around the world. You can select an available region of the world or search for the specific country directly. The project is made using React, React Router and Styled components. 
+The project use [REST Countries API](https://restcountries.com/).
+The project based on [Frontend Mentor Challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). 
+
 
 ## Demo
 
-You can open and use the app by [countries-wiki app link]().
+You can open and use the app by [countries-wiki app link](https://countries-wiki-prod.vercel.app/).
 
 ## Project structure
 
