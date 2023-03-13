@@ -26,8 +26,12 @@ The project has the next dependencies in the [package.json](package.json) file.
 <div align="center">
 
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/react?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/axios?style=for-the-badge)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/react-router-dom?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/react-icons?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/react-select?style=for-the-badge)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/styled-components?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/typescript?style=for-the-badge)
 
 </div>
 
@@ -57,7 +61,7 @@ To run project, open the root directory and enter the following command:
 ```
 
 The command runs the app in the development mode.
-Open [http://localhost:3003](http://localhost:3002) to view it in your browser.
+Open [http://localhost:3002](http://localhost:3002) to view it in your browser.
 
 ## License
 
