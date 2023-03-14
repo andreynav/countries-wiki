@@ -7,6 +7,7 @@ import { CountryT, RegionT } from '../../types/types'
 import { CardList } from '../CardList/CardList'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
+import { Loader } from '../Loader/Loader'
 import { NotFound } from '../NotFound/NotFound'
 
 export const Main = () => {
@@ -41,7 +42,7 @@ export const Main = () => {
       })
   }, [debouncedSearch, error])
 
-  if (!countriesData) return <div>Loader...</div>
+  if (!countriesData) return <Loader />
 
   return (
     <MainWrapper>

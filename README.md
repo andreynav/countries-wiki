@@ -1,7 +1,7 @@
 <div align="center">
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/andreynav/countries-wiki?style=for-the-badge)
-![GitHub deployments](https://img.shields.io/github/deployments/andreynav/countries-wiki/Production%20%E2%80%93%20countries-wiki-andyn?label=vercel%20deployment&style=for-the-badge)
+![GitHub deployments](https://img.shields.io/github/deployments/andreynav/countries-wiki/Production%20%E2%80%93%20countries-wiki-prod?label=vercel%20deployment&style=for-the-badge)
 ![Website](https://img.shields.io/website?label=countries%20wiki&style=for-the-badge&url=https%3A%2F%2Fcountries-wiki-prod.vercel.app%2F)
 
 </div>
