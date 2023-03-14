@@ -8,6 +8,7 @@ import { getCurrency } from '../../utils/getCurrency'
 import { getLanguages } from '../../utils/getLanguages'
 import { splitNumber } from '../../utils/splitNumber'
 import { BackButton } from '../BackButton/BackButton'
+import { Loader } from '../Loader/Loader'
 
 export const Country = () => {
   const params = useParams<{ name: string }>()
@@ -48,7 +49,7 @@ export const Country = () => {
       })
   }, [country])
 
-  if (!country) return <div>Loader...</div>
+  if (!country) return <Loader />
 
   let bordersCountries = null
   if (borderCountryNameList?.length > 0) {
