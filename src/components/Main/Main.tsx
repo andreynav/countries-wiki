@@ -13,17 +13,23 @@ import { NotFound } from '../NotFound/NotFound'
 export const Main = () => {
   const [search, setSearch] = useState<string>('')
   const [region, setRegion] = useState<RegionT>({ value: 'America', label: 'America' })
-  const [countriesData, setCountriesData] = useState<Array<CountryT>>([])
-  const [error, setError] = useState(false)
+  const [countriesData, setCountriesData] = useState<Array<CountryT> | null>(null)
+  const [error, setError] = useState<{ message: string; status?: number } | null>(null)
   const debouncedSearch = useDebounce(search)
 
-  const fetchRegionData = async (regionValue: string) => {
-    return await countryAPI.getRegion(regionValue)
-  }
-
   useEffect(() => {
-    fetchRegionData(region.value).then((data) => setCountriesData(data))
-  }, [region.value, search])
+    const fetchRegionData = async () => {
+      try {
+        const data = await countryAPI.getRegion(region.value)
+        setError(null)
+        setCountriesData(data)
+      } catch (error: any) {
+        setError({ message: error.message })
+      }
+    }
+
+    fetchRegionData().then()
+  }, [region.value])
 
   const searchCountries = useCallback(async (searchValue: string) => {
     if (searchValue.length === 0) return
@@ -32,23 +38,36 @@ export const Main = () => {
   }, [])
 
   useEffect(() => {
-    searchCountries(debouncedSearch)
-      .then((data) => {
-        setError(false)
-        if (data) setCountriesData(data)
-      })
-      .catch((error) => {
-        if (error.response.status === 404) setError(true)
-      })
-  }, [debouncedSearch, error])
+    const fetchSearchData = async () => {
+      try {
+        const data = await searchCountries(debouncedSearch)
+        setError(null)
+        setCountriesData(data ?? [])
+      } catch (error: any) {
+        setError({ message: error.message, status: error.response?.status })
+      }
+    }
 
-  if (!countriesData) return <Loader />
+    fetchSearchData().then()
+  }, [debouncedSearch])
+
+  if (countriesData === null) return <Loader />
 
   return (
     <MainWrapper>
       <Container>
         <Controls search={search} setSearch={setSearch} region={region} setRegion={setRegion} />
-        {error ? <NotFound setSearch={setSearch} /> : <CardList countries={countriesData} />}
+        {error ? (
+          <Error>{error.message}</Error>
+        ) : (
+          <>
+            {countriesData.length === 0 ? (
+              <NotFound setSearch={setSearch} />
+            ) : (
+              <CardList countries={countriesData} />
+            )}
+          </>
+        )}
       </Container>
     </MainWrapper>
   )
@@ -62,4 +81,11 @@ const MainWrapper = styled.div`
   & div {
     grid-template-rows: auto 1fr;
   }
+`
+
+const Error = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: auto 0;
+  color: var(--colors-link);
 `
