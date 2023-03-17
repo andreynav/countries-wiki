@@ -42,7 +42,7 @@ export const Main = () => {
       try {
         const data = await searchCountries(debouncedSearch)
         setError(null)
-        setCountriesData(data ?? [])
+        if (data) setCountriesData(data)
       } catch (error: any) {
         setError({ message: error.message, status: error.response?.status })
       }

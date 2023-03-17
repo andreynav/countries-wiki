@@ -4,7 +4,7 @@ import { NotFound } from '../components/NotFound/NotFound'
 export const getProperErrorComponent = (error: any, setSearch: any) => {
   if (error.message === 'Network Error') {
     return <Error>{error.message}</Error>
-  } else if (error.response.status === 404) {
+  } else if (error.message === 'Request failed with status code 404') {
     return <NotFound setSearch={setSearch} />
   } else {
     console.log(error)
