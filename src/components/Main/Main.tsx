@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { countryAPI } from '../../api/api'
 import { useDebounce } from '../../hooks/useDebounce'
 import { CountryT, RegionT } from '../../types/types'
+import { getProperErrorComponent } from '../../utils/getProperErrorComponent'
 import { CardList } from '../CardList/CardList'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
 import { Loader } from '../Loader/Loader'
-import { NotFound } from '../NotFound/NotFound'
 
 export const Main = () => {
   const [search, setSearch] = useState<string>('')
@@ -57,17 +57,7 @@ export const Main = () => {
     <MainWrapper>
       <Container>
         <Controls search={search} setSearch={setSearch} region={region} setRegion={setRegion} />
-        {error ? (
-          <Error>{error.message}</Error>
-        ) : (
-          <>
-            {countriesData.length === 0 ? (
-              <NotFound setSearch={setSearch} />
-            ) : (
-              <CardList countries={countriesData} />
-            )}
-          </>
-        )}
+        {error ? getProperErrorComponent(error, setSearch) : <CardList countries={countriesData} />}
       </Container>
     </MainWrapper>
   )
@@ -81,11 +71,4 @@ const MainWrapper = styled.div`
   & div {
     grid-template-rows: auto 1fr;
   }
-`
-
-const Error = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: auto 0;
-  color: var(--colors-link);
 `
