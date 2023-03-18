@@ -1,10 +1,7 @@
 import { IoEarth } from 'react-icons/io5'
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { SetSearchT } from '../../types/types'
-
-export const NotFound = ({ setSearch }: { setSearch: SetSearchT }) => {
+export const NotFound = () => {
   return (
     <NotFoundWrapper>
       <EarthContainer>
@@ -12,12 +9,6 @@ export const NotFound = ({ setSearch }: { setSearch: SetSearchT }) => {
         <IoEarth size={64} />
         <div>FOUND</div>
       </EarthContainer>
-      <div>
-        {'go to '}
-        <NavLink to="/" onClick={() => setSearch('')}>
-          {'home page'}
-        </NavLink>
-      </div>
     </NotFoundWrapper>
   )
 }
@@ -30,16 +21,6 @@ const NotFoundWrapper = styled.div`
   background-color: var(--colors-bg);
   color: var(--color-text);
   font-weight: bold;
-
-  & div:last-child {
-    line-height: 64px;
-  }
-
-  & a {
-    color: var(--colors-link);
-    text-decoration: none;
-    font-weight: normal;
-  }
 `
 
 const EarthContainer = styled.div`
