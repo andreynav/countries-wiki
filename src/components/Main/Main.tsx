@@ -57,7 +57,7 @@ export const Main = () => {
     <MainWrapper>
       <Container>
         <Controls search={search} setSearch={setSearch} region={region} setRegion={setRegion} />
-        {error ? getProperErrorComponent(error, setSearch) : <CardList countries={countriesData} />}
+        {error ? getProperErrorComponent(error) : <CardList countries={countriesData} />}
       </Container>
     </MainWrapper>
   )
