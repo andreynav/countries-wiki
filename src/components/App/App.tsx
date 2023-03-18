@@ -12,6 +12,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/country/:name" element={<Country />} />
+        {/*// @ts-ignore*/}
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </>

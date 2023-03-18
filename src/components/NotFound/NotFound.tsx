@@ -2,7 +2,9 @@ import { IoEarth } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const NotFound = ({ setSearch }: any) => {
+import { SetSearchT } from '../../types/types'
+
+export const NotFound = ({ setSearch }: { setSearch: SetSearchT }) => {
   return (
     <NotFoundWrapper>
       <EarthContainer>

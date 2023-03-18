@@ -26,8 +26,6 @@ export const Country = () => {
 
   const getBorderCountryNameByCode = async (borderCountryCode: string) => {
     return await countryAPI.getBorderCountryNameByCode(borderCountryCode)
-    // const borderCountryData = await countryAPI.getBorderCountryNameByCode(borderCountryCode)
-    // return borderCountryData[0]?.name.common || ''
   }
 
   useEffect(() => {

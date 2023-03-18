@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { ControlsT, RegionT } from '../../types/types'
 import { CustomSelect } from '../CustomSelect/CustomSelect'
 import { Search } from '../Search/Search'
 
@@ -11,10 +12,10 @@ const options = [
   { value: 'Oceania', label: 'Oceania' }
 ]
 
-export const Controls = ({ search, setSearch, region, setRegion }: any) => {
-  const onSetRegion = (value: any) => {
+export const Controls = ({ search, setSearch, region, setRegion }: ControlsT) => {
+  const onSetRegion = (region: RegionT) => {
     setSearch('')
-    setRegion(value)
+    setRegion(region)
   }
   return (
     <ControlsContainer>
@@ -25,7 +26,7 @@ export const Controls = ({ search, setSearch, region, setRegion }: any) => {
         isClearable={false}
         isSearchable={false}
         value={region}
-        onChange={(value) => onSetRegion(value)}
+        onChange={(value) => onSetRegion(value as RegionT)}
       />
     </ControlsContainer>
   )
