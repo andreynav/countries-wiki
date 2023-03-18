@@ -11,7 +11,7 @@ import { BackButton } from '../BackButton/BackButton'
 import { Loader } from '../Loader/Loader'
 
 export const Country = () => {
-  const params = useParams<{ name: string }>()
+  const { name } = useParams<{ name: string }>()
   const [country, setCountry] = useState<CountryT | null>(null)
   const [borderCountryNameList, setBorderCountryNameList] = useState<string[]>([])
 
@@ -21,8 +21,8 @@ export const Country = () => {
   }
 
   useEffect(() => {
-    getCountry(params.name!).then((data) => setCountry(data))
-  }, [params.name])
+    if (name) getCountry(name).then((data) => setCountry(data))
+  }, [name])
 
   const getBorderCountryNameByCode = async (borderCountryCode: string) => {
     return await countryAPI.getBorderCountryNameByCode(borderCountryCode)
@@ -32,11 +32,14 @@ export const Country = () => {
     if (!country?.borders?.length) {
       return
     }
+
     Promise.all(
       country.borders.map(async (borderCountryCode) => {
         const borderCountry = await getBorderCountryNameByCode(borderCountryCode)
-        // @ts-ignore
-        return borderCountry[0]?.name.common
+        if (Array.isArray(borderCountry) && borderCountry.length > 0) {
+          return borderCountry[0].name.common
+        }
+        return undefined
       })
     )
       .then((borderCountryNames) => {
@@ -49,16 +52,29 @@ export const Country = () => {
 
   if (!country) return <Loader />
 
-  let bordersCountries = null
-  if (borderCountryNameList?.length > 0) {
-    bordersCountries = borderCountryNameList?.map((borderCountryName) => {
-      return (
-        <StyledNavLink key={borderCountryName} to={`/country/${borderCountryName}`}>
-          <BoarderCountryButton>{borderCountryName}</BoarderCountryButton>
-        </StyledNavLink>
-      )
-    })
-  }
+  const {
+    flags,
+    name: countryName,
+    capital,
+    area,
+    population,
+    region,
+    subregion,
+    continents,
+    currencies,
+    languages,
+    maps,
+    timezones
+  } = country
+
+  const bordersCountries =
+    borderCountryNameList?.length > 0
+      ? borderCountryNameList?.map((borderCountryName) => (
+          <StyledNavLink key={borderCountryName} to={`/country/${borderCountryName}`}>
+            <BoarderCountryButton>{borderCountryName}</BoarderCountryButton>
+          </StyledNavLink>
+        ))
+      : 'no countries'
 
   return (
     <CountryContainer>
@@ -66,75 +82,56 @@ export const Country = () => {
         <BackButton />
       </ButtonContainer>
       <CardData className="CardData">
-        <FlagImage src={country?.flags?.png} alt={country?.flags?.alt} />
+        <FlagImage src={flags?.png} alt={flags?.alt} />
         <DataContainer className="DataContainer">
-          <CountryName>{`${country?.name.common}`}</CountryName>
+          <CountryName>{countryName.common}</CountryName>
           <CountryData>
             <div>
-              <b>Official Name:&nbsp;</b>
-              {country?.name.official}
+              <b>Official Name:</b> {countryName.official}
             </div>
             <div>
-              <b>Capital:&nbsp;</b>
-              {country!.capital ? `${country?.capital[0]}` : `no data`}
+              <b>Capital:</b> {capital?.[0] ?? `no data`}
             </div>
             <div>
-              <b>Area:&nbsp;</b>
-              {splitNumber(country?.area)} {'km'}
-              {<sup>2</sup>}
+              <b>Area:</b> {splitNumber(area)} km<sup>2</sup>
             </div>
             <div>
-              <b>Population:&nbsp;</b>
-              {splitNumber(country?.population)}
+              <b>Population:</b> {splitNumber(population)}
             </div>
             <div>
-              <b>Region:&nbsp;</b>
-              {country?.region}
+              <b>Region:</b> {region}
             </div>
             <div>
-              <b>Sub Region:&nbsp;</b>
-              {country?.subregion}
+              <b>Sub Region:</b> {subregion}
             </div>
             <div>
-              <b>Continent:&nbsp;</b>
-              {country?.continents[0]}
+              <b>Continent:</b> {continents[0]}
             </div>
             <div>
-              <b>Currencies:&nbsp;</b>
-              {/*{currency} ({currencySymbol})*/}
-              {getCurrency(country.currencies)}
+              <b>Currencies:</b> {getCurrency(currencies)}
             </div>
             <div>
-              <b>Languages:&nbsp;</b>
-              {getLanguages(country.languages)}
+              <b>Languages:</b> {getLanguages(languages)}
             </div>
             <div>
-              <b>Link to Google map:&nbsp;</b>
-              <a
-                href={country?.maps?.googleMaps ? country.maps.googleMaps : '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <b>Link to Google map:</b>{' '}
+              <a href={maps?.googleMaps ?? '#'} target="_blank" rel="noopener noreferrer">
                 link
               </a>
             </div>
             <div>
-              <b>Link to Google street map:&nbsp;</b>{' '}
-              <a
-                href={country?.maps?.openStreetMaps ? country.maps.openStreetMaps : '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <b>Link to Google street map:</b>{' '}
+              <a href={maps?.openStreetMaps ?? '#'} target="_blank" rel="noopener noreferrer">
                 link
               </a>
             </div>
             <div>
-              <b>{'Timezones:'}</b> {country?.timezones.map((timezone) => timezone).join(', ')}
+              <b>Timezones:</b> {timezones.map((timezone) => timezone).join(', ')}
             </div>
           </CountryData>
           <CountryBoarders>
             <b>Boarder Countries:&nbsp;</b>
-            <div>{bordersCountries !== null ? bordersCountries : 'no countries'}</div>
+            <div>{bordersCountries}</div>
           </CountryBoarders>
         </DataContainer>
       </CardData>
@@ -279,10 +276,6 @@ const CountryBoarders = styled.div`
     grid-auto-flow: row;
     grid-template-rows: repeat(1, auto);
     grid-template-columns: 1fr;
-
-    & b {
-      //margin: 0 0 1rem 0;
-    }
   }
 `
 
