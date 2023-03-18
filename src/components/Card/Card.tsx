@@ -12,16 +12,15 @@ export const Card = ({ country }: { country: CountryT }) => {
       <CardContainer>
         <FlagImage src={flags?.png} alt={'flag'} />
         <CardData>
-          <div>{`${name.common}`}</div>
+          <div>{name.common}</div>
           <div>
-            <b>{'Capital:'}</b> {capital ? `${capital[0]}` : `no data`}
+            <b>Capital:</b> {capital?.[0] || `no data`}
           </div>
           <div>
-            <b>{'Population:'}</b> {splitNumber(population)}
+            <b>Population:</b> {splitNumber(population)}
           </div>
           <div>
-            <b>{'Area:'}</b> {splitNumber(area)} {'km'}
-            {<sup>2</sup>}
+            <b>Area:</b> {splitNumber(area)} km<sup>2</sup>
           </div>
         </CardData>
       </CardContainer>
@@ -35,7 +34,7 @@ const StyledNavLink = styled(NavLink)`
   justify-self: center;
 `
 
-const CardContainer = styled.div`
+const CardContainer = styled.article`
   display: grid;
   border-radius: var(--radii);
   box-shadow: var(--shadow);
@@ -55,7 +54,7 @@ const FlagImage = styled.img`
   width: 100%;
   height: 150px;
 `
-const CardData = styled.div`
+const CardData = styled.section`
   display: grid;
   padding: 1rem 2rem;
   align-self: start;
