@@ -14,7 +14,7 @@ export const CustomSelect = styled(Select).attrs({
       boxShadow: 'var(--shadow)',
       cursor: 'pointer'
     }),
-    option: (innerStyles: any, state: any) => ({
+    option: (innerStyles: any, state: { isSelected: boolean }) => ({
       ...innerStyles,
       color: 'var(--colors-text)',
       backgroundColor: state.isSelected ? 'var(--colors-bg)' : 'var(--colors-ui-base)',
@@ -22,7 +22,6 @@ export const CustomSelect = styled(Select).attrs({
     })
   }
 })`
-  //min-width: 200px;
   border-radius: var(--radii);
   font-family: var(--family);
   border: none;

@@ -3,6 +3,18 @@ export type RegionT = {
   label: string
 }
 
+export type SetSearchT = (search: string) => void
+export type SearchT = {
+  search: string
+  setSearch: SetSearchT
+}
+
+export type SetRegionT = (region: RegionT) => void
+export type ControlsT = {
+  region: RegionT
+  setRegion: SetRegionT
+} & SearchT
+
 export type LanguagesT = { [key: string]: string }
 export type CurrencyT = {
   [key: string]: { name: string; symbol: string }
