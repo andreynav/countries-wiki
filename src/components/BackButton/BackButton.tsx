@@ -5,7 +5,7 @@ import styled from 'styled-components'
 export const BackButton = () => {
   const navigate = useNavigate()
   const onNavigate = () => {
-    navigate('/')
+    navigate(-1)
   }
 
   return (
