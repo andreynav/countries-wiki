@@ -3,16 +3,15 @@ import styled from 'styled-components'
 
 import { countryAPI } from '../../api/api'
 import { useDebounce } from '../../hooks/useDebounce'
-import { CountryT, RegionT } from '../../types/types'
+import { CountryT, RegionT, SetRegionT } from '../../types/types'
 import { getProperErrorComponent } from '../../utils/getProperErrorComponent'
 import { CardList } from '../CardList/CardList'
 import { Container } from '../Container/Container'
 import { Controls } from '../Controls/Controls'
 import { Loader } from '../Loader/Loader'
 
-export const Main = () => {
+export const Main = ({ region, setRegion }: { region: RegionT; setRegion: SetRegionT }) => {
   const [search, setSearch] = useState<string>('')
-  const [region, setRegion] = useState<RegionT>({ value: 'America', label: 'America' })
   const [countriesData, setCountriesData] = useState<Array<CountryT> | null>(null)
   const [error, setError] = useState<{ message: string; status?: number } | null>(null)
   const debouncedSearch = useDebounce(search)
@@ -23,6 +22,7 @@ export const Main = () => {
         const data = await countryAPI.getRegion(region.value)
         setError(null)
         setCountriesData(data)
+        setRegion(region)
       } catch (error: any) {
         setError({ message: error.message })
       }
