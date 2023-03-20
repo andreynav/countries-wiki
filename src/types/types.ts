@@ -3,13 +3,14 @@ export type RegionT = {
   label: string
 }
 
+export type SetRegionT = (region: RegionT) => void
+
 export type SetSearchT = (search: string) => void
 export type SearchT = {
   search: string
   setSearch: SetSearchT
 }
 
-export type SetRegionT = (region: RegionT) => void
 export type ControlsT = {
   region: RegionT
   setRegion: SetRegionT
