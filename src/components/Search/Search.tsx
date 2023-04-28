@@ -8,7 +8,7 @@ export const Search = ({ search, setSearch }: SearchT) => {
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)
 
   return (
-    <InputContainer>
+    <InputContainer className="search">
       <IoSearch size={20} />
       <Input value={search} onChange={onInputChange} />
       <IoCloseCircleOutline size={20} onClick={() => setSearch('')} />

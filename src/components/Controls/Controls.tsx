@@ -27,6 +27,7 @@ export const Controls = ({ search, setSearch, region, setRegion }: ControlsT) =>
         isSearchable={false}
         value={region}
         onChange={(value) => onSetRegion(value as RegionT)}
+        className="customSelect"
       />
     </ControlsContainer>
   )
