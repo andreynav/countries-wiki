@@ -182,4 +182,64 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  
+  .tooltip {
+    display: grid;
+    grid-template-columns: 20px auto 20px;
+    align-items: center;
+    background-color: var(--colors-ui-base);
+    border-radius: var(--radii);
+    //box-shadow: var(--shadow);
+    margin-bottom: 0;
+    padding: 1rem;
+    cursor: pointer;
+    
+    & .introjs-tooltip-header a {
+      color: var(--color-text);
+    }
+    
+    & .introjs-tooltiptext {
+      font-family: var(--family);
+    }
+    
+    & .introjs-arrow.top-right {
+      top: -10px;
+      right: 10px;
+      border-bottom-color: var(--colors-ui-base);
+    }
+
+    & .introjs-arrow {
+      border: 5px solid transparent;
+      content: "";
+      position: absolute;
+      border-bottom-color: var(--colors-ui-base);
+    }   
+    
+    & .introjs-progress div {
+      background-color: #0139a6;
+    }
+    
+    & .introjs-helperNumberLayer {
+      color: var(--color-text);
+    }
+    
+    & .introjs-tooltipbuttons {
+      padding-top: 20px;
+    }
+    
+    & .introjs-tooltipbuttons a {
+      color: var(--color-text);
+      background-color: var(--colors-ui-base);
+      text-shadow: none;
+    }
+    
+    & .introjs-tooltipbuttons a:hover {
+      box-shadow: var(--shadow);
+    }
+    
+    & .introjs-helperLayer {
+      border: 1px solid red;
+    }
+    
+  }
 `

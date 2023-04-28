@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
-import { IoMoon, IoMoonOutline } from 'react-icons/io5'
+import { IoEye, IoEyeOff, IoMoon, IoMoonOutline } from 'react-icons/io5'
 import styled from 'styled-components'
 
 import { Container } from '../Container/Container'
+import { Onboarding } from '../Onboarding/Onboarding'
 
 export const Header = () => {
   const [theme, setTheme] = useState('light')
+  const [onboarding, setOnboarding] = useState<boolean>(true)
 
   const onSwitchTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
+  const onSwitchOnboarding = () => {
+    setOnboarding(!onboarding)
   }
 
   useEffect(() => {
@@ -20,10 +26,17 @@ export const Header = () => {
       <Container>
         <Wrapper>
           <Title>Where in the world?</Title>
-          <ModeSwitcher onClick={onSwitchTheme}>
-            {theme === 'light' ? <IoMoonOutline size={'14px'} /> : <IoMoon size={'14px'} />}
-            <div style={{ marginLeft: '0.75rem' }}>{theme} theme</div>
-          </ModeSwitcher>
+          {onboarding && <Onboarding />}
+          <Controls>
+            <ModeSwitcher className="onboarding" onClick={onSwitchOnboarding}>
+              {onboarding ? <IoEye size={'18px'} /> : <IoEyeOff size={'18px'} />}
+              <div style={{ marginLeft: '0.75rem' }}>{onboarding} onboarding</div>
+            </ModeSwitcher>
+            <ModeSwitcher className="toggle" onClick={onSwitchTheme}>
+              {theme === 'light' ? <IoMoonOutline size={'16px'} /> : <IoMoon size={'16px'} />}
+              <div style={{ marginLeft: '0.75rem' }}>{theme} theme</div>
+            </ModeSwitcher>
+          </Controls>
         </Wrapper>
       </Container>
     </HeaderElement>
@@ -50,6 +63,13 @@ const Title = styled.div`
   font-size: var(--fs-sm);
   text-decoration: none;
   font-weight: var(--fw-bold);
+`
+
+const Controls = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
 `
 
 const ModeSwitcher = styled.div`

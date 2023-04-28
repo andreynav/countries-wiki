@@ -7,7 +7,7 @@ export const getCurrency = (currencies: CurrencyT) => {
 
   const currencyObject: Array<string> = currencyKey.map((item) => {
     const currencyName = currencies[item]!.name
-    const currencySymbol = currencies[item]!.symbol
+    const currencySymbol = currencies[item]?.symbol ?? '-'
 
     return `${currencyName} (${currencySymbol})`
   })
