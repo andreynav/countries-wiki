@@ -43,6 +43,7 @@ The project has the next dependencies in the [package.json](package.json) file.
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/react-select?style=for-the-badge)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/styled-components?style=for-the-badge)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/typescript?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/intro.js-react?style=for-the-badge)
 
 </div>
 
