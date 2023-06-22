@@ -25,7 +25,7 @@ export const Header = () => {
     <HeaderElement>
       <Container>
         <Wrapper>
-          <Title>Where in the world?</Title>
+          <Title data-cy="header-title">Where in the world?</Title>
           {onboarding && <Onboarding />}
           <Controls>
             <ModeSwitcher className="onboarding" onClick={onSwitchOnboarding}>
