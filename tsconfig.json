@@ -7,6 +7,7 @@
     ],
     /* Language and Environment */
     "target": "es2016",
+    "types": ["cypress", "node"],
     "jsx": "react-jsx",
 
     /* Modules */
@@ -49,6 +50,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "src"
+    "src",
+    "cypress"
   ]
 }
