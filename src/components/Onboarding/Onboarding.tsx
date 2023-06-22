@@ -8,20 +8,22 @@ export const Onboarding = () => {
     {
       element: '.toggle',
       intro: 'You can switch Dark or Light theme',
-      position: 'right'
+      position: 'bottom'
     },
     {
       element: '.onboarding',
-      intro: 'You can enable or disable  this onboarding'
+      intro: 'You can enable or disable  this onboarding',
+      position: 'bottom'
     },
     {
       element: '.customSelect',
       intro: 'You can choose the region of the world you are interested in',
-      position: 'right'
+      position: 'bottom'
     },
     {
       element: '.search',
-      intro: 'You can search for any country in the current region'
+      intro: 'You can search for any country in the current region',
+      position: 'bottom'
     }
   ])
   const [hints, _setHints] = useState([
