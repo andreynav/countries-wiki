@@ -2,7 +2,7 @@ import { onboarding } from '../../pages/ui/Onboarding'
 
 describe('Onboarding suite', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit(`${Cypress.env('baseUrl')}`)
   })
 
   it('Close onboarding tooltip', () => {
