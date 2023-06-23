@@ -30,11 +30,15 @@ export const Header = () => {
           <Controls>
             <ModeSwitcher className="onboarding" onClick={onSwitchOnboarding}>
               {onboarding ? <IoEye size={'18px'} /> : <IoEyeOff size={'18px'} />}
-              <div style={{ marginLeft: '0.75rem' }}>{onboarding} onboarding</div>
+              <div data-cy="header-onboarding" style={{ marginLeft: '0.75rem' }}>
+                {onboarding} onboarding
+              </div>
             </ModeSwitcher>
             <ModeSwitcher className="toggle" onClick={onSwitchTheme}>
               {theme === 'light' ? <IoMoonOutline size={'16px'} /> : <IoMoon size={'16px'} />}
-              <div style={{ marginLeft: '0.75rem' }}>{theme} theme</div>
+              <div data-cy="header-theme" style={{ marginLeft: '0.75rem' }}>
+                {theme} theme
+              </div>
             </ModeSwitcher>
           </Controls>
         </Wrapper>
