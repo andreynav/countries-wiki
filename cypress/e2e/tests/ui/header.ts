@@ -1,6 +1,4 @@
-import { common } from '../../pages/ui/Common'
-import { header } from '../../pages/ui/Header'
-import { onboarding } from '../../pages/ui/Onboarding'
+import { common, header, onboarding } from '../../pages'
 
 describe('Header suite', () => {
   beforeEach(() => {
@@ -12,27 +10,23 @@ describe('Header suite', () => {
   })
 
   it('Default onboarding toggle should be on', () => {
-    cy.get(onboarding.closeBtnLocator).wait(1000).click()
-    cy.get(onboarding.tooltipLocator).should('not.exist')
+    onboarding.closeTooltip()
     cy.get(header.onboardingIconLocator).should('have.descendants', 'circle')
   })
 
   it('Default theme toggle should be light', () => {
-    cy.get(onboarding.closeBtnLocator).wait(1000).click()
-    cy.get(onboarding.tooltipLocator).should('not.exist')
+    onboarding.closeTooltip()
     cy.get(header.themeTextLocator).should('have.text', 'light theme')
   })
 
-  it('Turn off onboarding toggle and check icon has been changed', () => {
-    cy.get(onboarding.closeBtnLocator).wait(1000).click()
-    cy.get(onboarding.tooltipLocator).should('not.exist')
+  it('Switch onboarding toggle and check icon has been changed', () => {
+    onboarding.closeTooltip()
     cy.get(header.onboardingTextLocator).click()
     cy.get(header.onboardingIconLocator).should('not.have.descendants', 'circle')
   })
 
-  it('Switch theme toggle and check icon has been changed', () => {
-    cy.get(onboarding.closeBtnLocator).wait(1000).click()
-    cy.get(onboarding.tooltipLocator).should('not.exist')
+  it('Switch theme toggle and check background has been changed', () => {
+    onboarding.closeTooltip()
     cy.get(header.themeTextLocator).click()
     cy.get(header.headerLocator).should(
       'have.css',

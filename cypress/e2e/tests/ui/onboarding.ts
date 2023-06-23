@@ -1,4 +1,4 @@
-import { onboarding } from '../../pages/ui/Onboarding'
+import { onboarding } from '../../pages/'
 
 describe('Onboarding suite', () => {
   beforeEach(() => {
@@ -6,8 +6,7 @@ describe('Onboarding suite', () => {
   })
 
   it('Close onboarding tooltip', () => {
-    cy.get(onboarding.closeBtnLocator).wait(1000).click()
-    cy.get(onboarding.tooltipLocator).should('not.exist')
+    onboarding.closeTooltip()
   })
 
   it('Tooltip text should be changed for specific toggles', () => {
