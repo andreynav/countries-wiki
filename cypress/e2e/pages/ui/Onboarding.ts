@@ -1,3 +1,5 @@
+import { header } from './Header'
+
 class Onboarding {
   tooltipLocator = '.introjs-tooltip[role="dialog"]'
   textLocator = `${this.tooltipLocator} .introjs-tooltiptext`
@@ -7,6 +9,11 @@ class Onboarding {
 
   themeToggleText = 'You can switch Dark or Light theme'
   onboardingToggleText = 'You can enable or disable  this onboarding'
+
+  openTooltip() {
+    cy.get(header.onboardingTextLocator).click()
+    cy.get(this.tooltipLocator).should('exist')
+  }
 
   closeTooltip() {
     cy.get(this.closeBtnLocator).wait(1000).click()

@@ -7,7 +7,7 @@ import { Onboarding } from '../Onboarding/Onboarding'
 
 export const Header = () => {
   const [theme, setTheme] = useState('light')
-  const [onboarding, setOnboarding] = useState<boolean>(true)
+  const [onboarding, setOnboarding] = useState<boolean>(false)
 
   const onSwitchTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
