@@ -4,20 +4,20 @@ import { onboarding } from '../../pages/ui/Onboarding'
 
 describe('Header suite', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit(`${Cypress.env('baseUrl')}`)
   })
 
   it('Header title text should contains specific value', () => {
     cy.get(header.titleLocator).should('have.text', header.titleText)
   })
 
-  it.only('Default onboarding toggle should be on', () => {
+  it('Default onboarding toggle should be on', () => {
     cy.get(onboarding.closeBtnLocator).wait(1000).click()
     cy.get(onboarding.tooltipLocator).should('not.exist')
     cy.get(header.onboardingIconLocator).should('have.descendants', 'circle')
   })
 
-  it.only('Default theme toggle should be light', () => {
+  it('Default theme toggle should be light', () => {
     cy.get(onboarding.closeBtnLocator).wait(1000).click()
     cy.get(onboarding.tooltipLocator).should('not.exist')
     cy.get(header.themeTextLocator).should('have.text', 'light theme')

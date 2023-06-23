@@ -2,6 +2,7 @@
   "name": "countries-wiki",
   "version": "0.1.0",
   "private": true,
+  "author": "Andrei Nalivaika",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -32,7 +33,10 @@
     "eject": "react-scripts eject",
     "lint": "tsc --noEmit && eslint src/**/*.{ts,tsx,json}",
     "lint:fix": "tsc --noEmit && eslint --fix 'src/**/*.{ts,tsx,json}'",
-    "prettier:fix": "prettier .prettierrc 'src/**/*.{ts,tsx,json}' --write"
+    "prettier:fix": "prettier .prettierrc 'src/**/*.{ts,tsx,json}' --write",
+    "cy-all-cli": "npx cypress run",
+    "cy-all-chrome": "npx cypress run --headed --browser chrome",
+    "cy-all-chrome-prod": "ENV=prod npx cypress run --headed --browser chrome"
   },
   "eslintConfig": {
     "extends": [
