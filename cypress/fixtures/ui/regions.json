@@ -1,0 +1,24 @@
+{
+  "regions": [
+    {
+      "region": "Africa",
+      "firstCountryName": "Malawi"
+    },
+    {
+      "region": "Asia",
+      "firstCountryName": "Jordan"
+    },
+    {
+      "region": "Europe",
+      "firstCountryName": "Serbia"
+    },
+    {
+      "region": "America",
+      "firstCountryName": "Barbados"
+    },
+    {
+      "region": "Oceania",
+      "firstCountryName": "Northern Mariana Islands"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import { Card } from '../Card/Card'
 
 export const CardList = ({ countries }: { countries: CountryT[] }) => {
   return (
-    <StyledCardList>
+    <StyledCardList data-cy="countries-list">
       {countries.map((country: CountryT) => {
         return <Card key={country.name.common} country={country} />
       })}

@@ -14,7 +14,7 @@ export default defineConfig({
     specPattern: 'cypress/e2e/tests/**/*.{js,jsx,ts,tsx}',
     defaultCommandTimeout: 5000,
     chromeWebSecurity: false,
-    viewportWidth: 1000,
+    viewportWidth: 1350,
     viewportHeight: 800
   }
 })
