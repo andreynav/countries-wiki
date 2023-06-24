@@ -10,8 +10,8 @@ export const Search = ({ search, setSearch }: SearchT) => {
   return (
     <InputContainer className="search">
       <IoSearch size={20} />
-      <Input value={search} onChange={onInputChange} />
-      <IoCloseCircleOutline size={20} onClick={() => setSearch('')} />
+      <Input value={search} onChange={onInputChange} data-cy="search-input" />
+      <IoCloseCircleOutline size={20} onClick={() => setSearch('')} data-cy="search-close" />
     </InputContainer>
   )
 }

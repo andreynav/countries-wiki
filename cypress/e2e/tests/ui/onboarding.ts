@@ -5,8 +5,6 @@ describe('Onboarding suite', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
   })
 
-  it('Open onboarding tooltip ', () => {})
-
   it('Close onboarding tooltip by clicking cross icon', () => {
     onboarding.openTooltip()
     onboarding.closeTooltip()

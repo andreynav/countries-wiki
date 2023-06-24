@@ -12,7 +12,7 @@ export const Card = ({ country }: { country: CountryT }) => {
       <CardContainer>
         <FlagImage src={flags?.png} alt={'flag'} />
         <CardData>
-          <div>{name.common}</div>
+          <div data-cy="country-name">{name.common}</div>
           <div>
             <b>Capital:</b> {capital?.[0] || `no data`}
           </div>
