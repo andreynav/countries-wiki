@@ -2,23 +2,28 @@
   "regions": [
     {
       "region": "Africa",
-      "firstCountryName": "Malawi"
+      "firstCountryName": "Malawi",
+      "countCountries": 59
     },
     {
       "region": "Asia",
-      "firstCountryName": "Jordan"
+      "firstCountryName": "Jordan",
+      "countCountries": 50
     },
     {
       "region": "Europe",
-      "firstCountryName": "Serbia"
+      "firstCountryName": "Serbia",
+      "countCountries": 53
     },
     {
       "region": "America",
-      "firstCountryName": "Barbados"
+      "firstCountryName": "Barbados",
+      "countCountries": 56
     },
     {
       "region": "Oceania",
-      "firstCountryName": "Northern Mariana Islands"
+      "firstCountryName": "Northern Mariana Islands",
+      "countCountries": 27
     }
   ]
 }
