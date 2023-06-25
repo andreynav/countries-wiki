@@ -32,6 +32,10 @@ class Countries {
       .eq(index)
       .should('be.visible')
   }
+
+  getCountOfCountries() {
+    return cy.get(`${this.countriesListLocator} > a`)
+  }
 }
 
 export const countries = new Countries()

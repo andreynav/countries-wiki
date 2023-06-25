@@ -25,6 +25,25 @@ describe('Counties suite', () => {
       })
     })
   })
+
+  it('Check countries count of the certain region', () => {
+    cy.get<RegionsT>('@regionsData').then((regionsData) => {
+      regionsData.regions.forEach((item) => {
+        let prevCountryName = ''
+        countries
+          .getFirstCountryName()
+          .then(($el) => {
+            prevCountryName = $el.text()
+          })
+          .then(() => {
+            countries.openDropdown()
+            countries.selectDropdownItem(item.region)
+            countries.waitUntilCountriesLoaded(prevCountryName)
+            countries.getCountOfCountries().should('have.length', item.countCountries)
+          })
+      })
+    })
+  })
 })
 
 export {}
