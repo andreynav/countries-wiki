@@ -1,34 +1,32 @@
-import { common, header } from '../../pages'
+import { header } from '../../pages'
 
 describe('Header suite', () => {
   beforeEach(() => {
     cy.visit(`${Cypress.env('baseUrl')}`)
   })
 
-  it('Header title text should contains specific value', () => {
-    cy.get(header.titleLocator).should('have.text', header.titleText)
+  it('header title text should contains specific value', () => {
+    header.verifyHeaderTitle()
   })
 
-  it('Default onboarding toggle should be off', () => {
-    cy.get(header.onboardingIconLocator).should('not.have.descendants', 'circle')
+  it('default onboarding toggle state should be off', () => {
+    header.verifyOnboardingToggleState(false)
   })
 
-  it('Default theme toggle should be light', () => {
-    cy.get(header.themeTextLocator).should('have.text', 'light theme')
+  it('default theme toggle should be light', () => {
+    header.verifyThemeToggleState(true)
+    header.verifyBackgroundColor(true)
   })
 
-  it('Switch onboarding toggle and check icon has been changed', () => {
-    cy.get(header.onboardingTextLocator).click()
-    cy.get(header.onboardingIconLocator).should('have.descendants', 'circle')
+  it('switch onboarding toggle and check its state should be on', () => {
+    header.clickToggle(header.onboardingTextLocator)
+    header.verifyOnboardingToggleState(true)
   })
 
-  it('Switch theme toggle and check background has been changed', () => {
-    cy.get(header.themeTextLocator).click()
-    cy.get(header.headerLocator).should(
-      'have.css',
-      'background-color',
-      common.darkThemeBackgroundColor
-    )
+  it('switch theme toggle and check background has been changed', () => {
+    header.clickToggle(header.themeText)
+    header.verifyThemeToggleState(false)
+    header.verifyBackgroundColor(false)
   })
 })
 

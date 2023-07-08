@@ -4,7 +4,8 @@ class Countries {
   searchCloseLocator = '[data-cy="search-close"]'
   selectValueLocator = '[class*="ValueContainer"]'
   selectDropdownLocator = '[class*="IndicatorsContainer"]'
-  dropdownListLocator = '#react-select-3-listbox'
+  dropdownListLocator = '.search + div > div'
+  dropdownItemLocator = 'div[class$="option"]'
   countryNameLocator = '[data-cy="country-name"]'
 
   openDropdown() {
@@ -13,7 +14,7 @@ class Countries {
   }
 
   selectDropdownItem(value: string) {
-    cy.get(this.dropdownListLocator).find('div').contains(value).wait(1000).click()
+    cy.get(this.dropdownListLocator).contains(this.dropdownItemLocator, value).click()
     cy.get(this.selectValueLocator).should('contain.text', value)
   }
 
