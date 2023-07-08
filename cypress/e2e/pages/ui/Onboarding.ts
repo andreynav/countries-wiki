@@ -7,17 +7,34 @@ class Onboarding {
   nextButtonLocator = `${this.tooltipLocator} .introjs-nextbutton`
   backButtonLocator = `${this.tooltipLocator} .introjs-prevbutton`
 
-  themeToggleText = 'You can switch Dark or Light theme'
-  onboardingToggleText = 'You can enable or disable  this onboarding'
+  themeToggleT = 'You can switch Dark or Light theme'
+  onboardingToggleT = 'You can enable or disable  this onboarding'
 
-  openTooltip() {
-    cy.get(header.onboardingTextLocator).click()
-    cy.get(this.tooltipLocator).should('exist')
+  verifyTooltipIsVisible = (shouldBeVisible: boolean) => {
+    const isExists = shouldBeVisible ? 'exist' : 'not.exist'
+    cy.get(this.tooltipLocator).should(isExists)
   }
 
-  closeTooltip() {
-    cy.get(this.closeBtnLocator).wait(1000).click()
-    cy.get(this.tooltipLocator).should('not.exist')
+  verifyOnboardingStepText = (text: string) => {
+    cy.get(this.textLocator).should('have.text', text)
+  }
+
+  clickCloseButton = () => {
+    cy.get(this.closeBtnLocator).click()
+  }
+
+  clickNextButton = () => {
+    cy.get(onboarding.nextButtonLocator).click()
+  }
+
+  openTooltip = (shouldBeVisible: boolean) => {
+    header.clickToggle(header.onboardingTextLocator)
+    this.verifyTooltipIsVisible(shouldBeVisible)
+  }
+
+  closeTooltip = (shouldBeVisible: boolean) => {
+    this.clickCloseButton()
+    this.verifyTooltipIsVisible(shouldBeVisible)
   }
 }
 export const onboarding = new Onboarding()

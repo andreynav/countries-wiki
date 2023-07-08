@@ -9,14 +9,17 @@ describe('Counties suite', () => {
     })
   })
 
-  // cy.get<RegionsT>('@regionsData').then((regionsData) => {
-  //       regions.forEach((item) => {
-  //         cy.api(`https://restcountries.com/v3.1/region/${item.region}`).then((response) => {
-  //           expect(response.status).eq(200)
-  //         })
-  //       })
-  //     })
-  // if using loop - browser crashes - https://github.com/cypress-io/cypress/issues/21135
+  /**
+  cy.get<RegionsT>('@regionsData').then((regionsData) => {
+        regions.forEach((item) => {
+          cy.api(`https://restcountries.com/v3.1/region/${item.region}`).then((response) => {
+            expect(response.status).eq(200)
+          })
+        })
+      })
+  if using loop - browser crashes - https://github.com/cypress-io/cypress/issues/21135
+   */
+
   it('GET request to region Africa should have status 200', () => {
     cy.api(`https://restcountries.com/v3.1/region/Africa`).then((response) => {
       expect(response.status).eq(200)
