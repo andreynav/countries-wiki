@@ -6,15 +6,15 @@ describe('Onboarding suite', () => {
   })
 
   it('Close onboarding tooltip by clicking cross icon', () => {
-    onboarding.openTooltip()
-    onboarding.closeTooltip()
+    onboarding.openTooltip(true)
+    onboarding.closeTooltip(false)
   })
 
   it('Tooltip text should be changed for specific toggles', () => {
-    onboarding.openTooltip()
-    cy.get(onboarding.textLocator).should('have.text', onboarding.themeToggleText)
-    cy.get(onboarding.nextButtonLocator).click()
-    cy.get(onboarding.textLocator).should('have.text', onboarding.onboardingToggleText)
+    onboarding.openTooltip(true)
+    onboarding.verifyOnboardingStepText(onboarding.themeToggleT)
+    onboarding.clickNextButton()
+    onboarding.verifyOnboardingStepText(onboarding.onboardingToggleT)
   })
 })
 
