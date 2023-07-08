@@ -1,41 +1,57 @@
 class Countries {
-  countriesListLocator = '[data-cy="countries-list"]'
-  searchInputLocator = '[data-cy="search-input"]'
-  searchCloseLocator = '[data-cy="search-close"]'
-  selectValueLocator = '[class*="ValueContainer"]'
-  selectDropdownLocator = '[class*="IndicatorsContainer"]'
-  dropdownListLocator = '.search + div > div'
-  dropdownItemLocator = 'div[class$="option"]'
-  countryNameLocator = '[data-cy="country-name"]'
+  countriesList = '[data-cy="countries-list"]'
+  searchInput = '[data-cy="search-input"]'
+  searchClose = '[data-cy="search-close"]'
+  selectedValue = '[class*="ValueContainer"] div'
+  selectDropdown = '[class*="IndicatorsContainer"]'
+  dropdownList = '.search + div > div:nth-child(4)'
+  dropdownItem = 'div[class$="option"]'
+  countryName = '[data-cy="country-name"]'
 
-  openDropdown() {
-    cy.get(this.selectDropdownLocator).click()
-    cy.get(this.dropdownListLocator).should('be.visible')
+  clickDropdown = () => {
+    cy.get(this.selectDropdown).click()
   }
 
-  selectDropdownItem(value: string) {
-    cy.get(this.dropdownListLocator).contains(this.dropdownItemLocator, value).click()
-    cy.get(this.selectValueLocator).should('contain.text', value)
+  clickDropdownItem = (value: string) => {
+    cy.get(this.dropdownList).contains(this.dropdownItem, value).click()
   }
 
-  getFirstCountryName() {
-    return cy.get(countries.countryNameLocator).first()
+  verifyDropdownIsOpened = () => {
+    cy.get(this.dropdownList).should('be.visible')
   }
 
-  waitUntilCountriesLoaded(oldValue: string) {
-    cy.get(countries.countryNameLocator).should('not.have.value', oldValue)
+  verifyDropdownValue = (value: string) => {
+    cy.get(this.selectedValue).should('contain.text', value)
   }
 
-  selectCountryByIndex(index: number) {
-    return cy
-      .get(this.countriesListLocator, { timeout: 10000 })
-      .find('a')
-      .eq(index)
-      .should('be.visible')
+  verifyFirstCountryName = (countryName: string) => {
+    this.selectCountryByIndex(0).should('contain.text', countryName)
   }
 
-  getCountOfCountries() {
-    return cy.get(`${this.countriesListLocator} > a`)
+  verifyCountOfCountries = (countryCount: number) => {
+    cy.get(`${this.countriesList} a`).should('have.length', countryCount)
+  }
+
+  openDropdown = () => {
+    this.clickDropdown()
+    this.verifyDropdownIsOpened()
+  }
+
+  selectDropdownItem = (value: string) => {
+    this.clickDropdownItem(value)
+    this.verifyDropdownValue(value)
+  }
+  // TODO: old implementation version
+  getFirstCountryName = () => {
+    return cy.get(countries.countryName).first()
+  }
+  // TODO: old implementation version
+  waitUntilCountriesLoaded = (oldValue: string) => {
+    cy.get(countries.countryName).should('not.have.value', oldValue)
+  }
+
+  selectCountryByIndex = (index: number) => {
+    return cy.get(this.countriesList, { timeout: 10000 }).find('a').eq(index).should('be.visible')
   }
 }
 

@@ -1,29 +1,27 @@
-{
-  "regions": [
-    {
-      "region": "Africa",
-      "firstCountryName": "Malawi",
-      "countCountries": 59
-    },
-    {
-      "region": "Asia",
-      "firstCountryName": "Jordan",
-      "countCountries": 50
-    },
-    {
-      "region": "Europe",
-      "firstCountryName": "Serbia",
-      "countCountries": 53
-    },
-    {
-      "region": "America",
-      "firstCountryName": "Barbados",
-      "countCountries": 56
-    },
-    {
-      "region": "Oceania",
-      "firstCountryName": "Northern Mariana Islands",
-      "countCountries": 27
-    }
-  ]
-}
+[
+  {
+    "region": "Africa",
+    "firstCountryName": "Malawi",
+    "countCountries": 59
+  },
+  {
+    "region": "Asia",
+    "firstCountryName": "Jordan",
+    "countCountries": 50
+  },
+  {
+    "region": "Europe",
+    "firstCountryName": "Serbia",
+    "countCountries": 53
+  },
+  {
+    "region": "America",
+    "firstCountryName": "Barbados",
+    "countCountries": 56
+  },
+  {
+    "region": "Oceania",
+    "firstCountryName": "Northern Mariana Islands",
+    "countCountries": 27
+  }
+]

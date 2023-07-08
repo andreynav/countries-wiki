@@ -19,7 +19,7 @@ describe('Header suite', () => {
   })
 
   it('switch onboarding toggle and check its state should be on', () => {
-    header.clickToggle(header.onboardingTextLocator)
+    header.clickToggle(header.onboardingText)
     header.verifyOnboardingToggleState(true)
   })
 
