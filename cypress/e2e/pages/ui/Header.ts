@@ -5,8 +5,8 @@ class Header {
   headerTitle = '[data-cy="header-title"]'
   titleText = 'Where in the world?'
   themeText = '[data-cy="header-theme"]'
-  onboardingIconLocator = '.onboarding svg'
-  onboardingTextLocator = '[data-cy="header-onboarding"]'
+  onboardingIcon = '.onboarding svg'
+  onboardingText = '[data-cy="header-onboarding"]'
 
   verifyHeaderTitle = () => {
     cy.get(this.headerTitle).should('have.text', this.titleText)
@@ -14,7 +14,7 @@ class Header {
 
   verifyOnboardingToggleState = (isOn: boolean) => {
     const condition = isOn ? 'have.descendants' : 'not.have.descendants'
-    cy.get(this.onboardingIconLocator).should(condition, 'circle')
+    cy.get(this.onboardingIcon).should(condition, 'circle')
   }
 
   verifyThemeToggleState = (isLightTheme: boolean) => {
