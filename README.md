@@ -21,6 +21,7 @@ You can open and use the app by [countries-wiki app link](https://countries-wiki
 
 The project has multilayer structure:
 
+- `cypress` - used to keep UI and API tests
 - `public` - used to keep static content for builds
 - `api` - used to keep API calls functionality
 - `assets` - used to keep static content
@@ -44,6 +45,8 @@ The project has the next dependencies in the [package.json](package.json) file.
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/styled-components?style=for-the-badge)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/typescript?style=for-the-badge)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/intro.js-react?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/countries-wiki/dev/cypress?style=for-the-badge)
+
 
 </div>
 
@@ -74,6 +77,22 @@ To run project, open the root directory and enter the following command:
 
 The command runs the app in the development mode.
 Open [http://localhost:3002](http://localhost:3002) to view it in your browser.
+
+## Running Cypress tests
+
+To run tests first you need to run the project and after that open the root directory and enter the following command:
+
+```console
+    npx cypress open 
+```
+
+You also can run test via command line interface:
+
+```console
+    yarn cy-all-cli
+```
+
+See available running scripts in package.json script section.
 
 ## License
 
